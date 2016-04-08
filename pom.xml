@@ -58,6 +58,25 @@
             <artifactId>commons-dbcp</artifactId>
         </dependency>
         
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>2.52.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-htmlunit-driver</artifactId>
+            <version>2.52.0</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-firefox-driver</artifactId>
+            <version>2.52.0</version>
+            <type>jar</type>
+        </dependency>
+        
         <!-- unit tests -->
         <dependency>
             <groupId>org.fluentlenium</groupId>
