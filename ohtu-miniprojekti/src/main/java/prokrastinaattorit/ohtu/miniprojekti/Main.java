@@ -1,8 +1,13 @@
 
+import javafx.application.Application;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
+import prokrastinaattorit.ohtu.miniprojekti.profiles.ProdProfile;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,16 +19,12 @@ import org.springframework.stereotype.Service;
  *
  * @author talon
  */
+@SpringBootApplication
+@Import({ProdProfile.class})
 public class Main {
 
     public static void main(String[] args) {
-        Main p = new Main();
-        p.start(args);
+        SpringApplication.run(Application.class, args);
+        
     }
-
-    private void start(String[] args) {
-        ApplicationContext context = 
-            new ClassPathXmlApplicationContext("META-INF/config.xml");
-    }
-    
 }
