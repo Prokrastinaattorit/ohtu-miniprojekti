@@ -5,13 +5,15 @@
  */
 package app.domain;
 
+import javax.persistence.Entity;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 /**
  *
  * @author Sara ja Laur
  */
-public class Book extends AbstractPersistable<Long> implements Entry{
+@Entity
+public class Book extends AbstractPersistable<Long> implements Entry {
     
     private String author;
     private String title;

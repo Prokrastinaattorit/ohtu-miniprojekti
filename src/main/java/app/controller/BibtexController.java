@@ -19,6 +19,6 @@ public class BibtexController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String redirect() {
-        return "hello";
+        return "bibtexinator";
     }
 }
