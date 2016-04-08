@@ -9,30 +9,20 @@
         <link rel="stylesheet" th:href="@{/css/style.css}" />
     </head>
     <body>
-        <div th:replace="fragments/header :: header"></div>
-
-        <div id = "wrapper">
-            <main>
-                <section id="imagelist">
-                    <h3>Images</h3>
-                    <div th:each="image : ${images}" class="clearfix">
-                        <div class="thumbContainer">
-                            <a th:href="@{/photocan/{id}(id=${image.id})}"><img class="thumbnail" th:src="@{/photocan/{id}/content(id=${image.id})}"/></a>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="addContent">
-                    <h3>Add new content</h3>
-                    <form method="POST" action="/photocan" enctype="multipart/form-data">
-                        <input type="file" name="file" id="file"/>
-                        <input type="submit" value="Upload"/>
-                    </form>
-                </section>
-
-            </main>
+      <h1>Bibtexinator</h1>
+      <form>
+        <div>
+          Author: <input type="text" placeholder="Sofi Oksanen">
         </div>
-
-        <div th:replace="fragments/footer :: footer"></div>
+        <div>
+          Title: <input type="text" placeholder="Puhdistus">
+        </div>
+        <div>
+          Year: <input type="text" placeholder="2008">
+        </div>
+        <div>
+          Publisher: <input type="text" placeholder="WSOY">
+        </div>
+      </form>
     </body>
 </html>
