@@ -1,3 +1,4 @@
+package prokrastinaattorit.ohtu.miniprojekti;
 
 import javafx.application.Application;
 import org.springframework.beans.factory.annotation.Autowired;
