@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head lang="en">
+        <meta charset="UTF-8" />
+        <title>Photocan</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#222831" /> <!-- For mobile Chrome -->
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css' />
+        <link rel="stylesheet" th:href="@{/css/style.css}" />
+    </head>
+    <body>
+        <div th:replace="fragments/header :: header"></div>
+
+        <div id = "wrapper">
+            <main>
+                <section id="imagelist">
+                    <h3>Images</h3>
+                    <div th:each="image : ${images}" class="clearfix">
+                        <div class="thumbContainer">
+                            <a th:href="@{/photocan/{id}(id=${image.id})}"><img class="thumbnail" th:src="@{/photocan/{id}/content(id=${image.id})}"/></a>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="addContent">
+                    <h3>Add new content</h3>
+                    <form method="POST" action="/photocan" enctype="multipart/form-data">
+                        <input type="file" name="file" id="file"/>
+                        <input type="submit" value="Upload"/>
+                    </form>
+                </section>
+
+            </main>
+        </div>
+
+        <div th:replace="fragments/footer :: footer"></div>
+    </body>
+</html>

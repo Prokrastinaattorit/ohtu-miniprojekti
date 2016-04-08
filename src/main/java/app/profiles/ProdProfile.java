@@ -1,4 +1,4 @@
-package prokrastinaattorit.ohtu.miniprojekti.profiles;
+package app.profiles;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -34,7 +34,7 @@ public class ProdProfile {
 
         factory.setJpaVendorAdapter(vendorAdapter);
         factory.setPersistenceUnitName("production");
-        factory.setPackagesToScan("prokrastinaattorit.ohtu.miniprojekti.domain");
+        factory.setPackagesToScan("app.domain");
         factory.setDataSource(dataSource());
 
         factory.afterPropertiesSet();

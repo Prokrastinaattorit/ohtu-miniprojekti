@@ -5,7 +5,7 @@
                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>prokrastinaattorit</groupId>
+    <groupId>prokrastinaattorit.bibtexinator</groupId>
     <artifactId>Bibtexinator</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -22,7 +22,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.3.3.RELEASE</version>
+        <version>1.2.5.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     
