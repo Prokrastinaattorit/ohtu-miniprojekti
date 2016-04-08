@@ -9,20 +9,35 @@
         <link rel="stylesheet" th:href="@{/css/style.css}" />
     </head>
     <body>
-      <h1>Bibtexinator</h1>
-      <form>
-        <div>
-          Author: <input type="text" placeholder="Sofi Oksanen"/>
-        </div>
-        <div>
-          Title: <input type="text" placeholder="Puhdistus"/>
-        </div>
-        <div>
-          Year: <input type="text" placeholder="2008"/>
-        </div>
-        <div>
-          Publisher: <input type="text" placeholder="WSOY"/>
-        </div>
-      </form>
+        <h1>Bibtexinator</h1>
+        <form action="#" th:action="@{/bibtexinator/save}" th:object="${book}" method="POST">
+            <ul th:each="book : ${books}">
+                <li th:text="${book.author}">Author</li>
+                <li th:text="${book.title}">Title</li>
+                <li th:text="${book.year}">Year</li>
+                <li th:text="${book.publisher}">Publisher</li>
+            </ul>
+            <table>
+                <tr>
+                    <td>Author: </td>
+                    <td><input type="text" th:field="*{author}" /></td>
+                </tr>
+                <tr>
+                    <td>Title: </td>
+                    <td><input type="text" th:field="*{title}" /></td>
+                </tr>
+                <tr>
+                    <td>Year: </td>
+                    <td><input type="text" th:field="*{year}" /></td>
+                </tr>
+                <tr>
+                    <td>Publisher: </td>
+                    <td><input type="text" th:field="*{publisher}" /></td>
+                </tr>
+                <tr>
+                    <td><button type="submit">Submit</button></td>
+                </tr>
+            </table>
+        </form>
     </body>
 </html>
