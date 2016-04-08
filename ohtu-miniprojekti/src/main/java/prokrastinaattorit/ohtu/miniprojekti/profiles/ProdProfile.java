@@ -34,7 +34,7 @@ public class ProdProfile {
 
         factory.setJpaVendorAdapter(vendorAdapter);
         factory.setPersistenceUnitName("production");
-        factory.setPackagesToScan("prokrastinaattorit.ohtu.miniprojekti");
+        factory.setPackagesToScan("prokrastinaattorit.ohtu.miniprojekti.domain");
         factory.setDataSource(dataSource());
 
         factory.afterPropertiesSet();
