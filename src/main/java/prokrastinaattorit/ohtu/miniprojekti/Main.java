@@ -1,13 +1,9 @@
 package prokrastinaattorit.ohtu.miniprojekti;
 
 import javafx.application.Application;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Import;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.stereotype.Service;
 import prokrastinaattorit.ohtu.miniprojekti.profiles.ProdProfile;
 
 /*
