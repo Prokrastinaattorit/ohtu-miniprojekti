@@ -7,8 +7,8 @@ description 'User can add a Book entry'
 
 scenario "User can add a valid book entry", {
     given 'on frontpage', {
-        goTo("http://localhost:8080/bibtexinator");   
-        Assert
+        driver = new HtmlUnitDriver();
+        driver.get("http://localhost:8080/bibtexinator");
     }
 
     when 'user fills the form and submits', {
