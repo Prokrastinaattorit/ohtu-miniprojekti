@@ -1,6 +1,6 @@
 jdk:
   - openjdk7
 script:
-  - mvn install -DskipTests=true -DskipITs=true -Dmaven.javadoc.skip=true
-  - mvn test
+  - mvn compile
+  - mvn exec:java
   - mvn integration-test
