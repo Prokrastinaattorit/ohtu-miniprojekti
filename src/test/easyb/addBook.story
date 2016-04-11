@@ -16,6 +16,7 @@ scenario "User can add a valid book entry", {
     }
  
     then 'new book is created', {
+        System.out.println("Page html: " + driver.getPageSource());
         driver.getPageSource().contains("Bibtexinator").shouldBe true
     }
 }
