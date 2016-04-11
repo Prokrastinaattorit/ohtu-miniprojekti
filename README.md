@@ -9,6 +9,7 @@ Backlog: https://trello.com/b/I76kFLET/ohtuminiproju
 ```
 mvn exec:java
 ```
+Ja toisella komentorivillä (ohjelman käynnistyttyä):
 ```
 mvn integration-test
 ```
