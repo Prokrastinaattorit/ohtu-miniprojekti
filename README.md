@@ -4,3 +4,12 @@
 Ohjelmistotuotantokurssin miniprojekti, kevät 2016.
 
 Backlog: https://trello.com/b/I76kFLET/ohtuminiproju
+
+**HUOMIO!** Travis ei ainakaan toistaiseksi aja easyb-testejä, niiden ajamiseksi suorita:
+```
+mvn exec:java
+```
+```
+mvn integration-test
+```
+Tämä ajaa sekä tavalliset testit että easyb-testit.
