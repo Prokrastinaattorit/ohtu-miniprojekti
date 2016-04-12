@@ -11,12 +11,20 @@ scenario "User can add a valid book entry", {
         driver.get("http://localhost:8080/bibtexinator");
     }
 
-    when 'user fills the form and submits', {
-        
+    when 'user fills the @book form and submits', {
+        element = driver.findElement(By.name("author"));
+        element.sendKeys("Sofi Oksanen");
+        element = driver.findElement(By.name("title"));
+        element.sendKeys("Puhdistus");
+        element = driver.findElement(By.name("year"));
+        element.sendKeys("2008");
+        element = driver.findElement(By.name("publisher"));
+        element.sendKeys("WSOY");
+        element = driver.findElement(By.name("add"));
+        element.submit();
     }
  
     then 'new book is created', {
-        System.out.println("Page html: " + driver.getPageSource());
-        driver.getPageSource().contains("Bibtexinator").shouldBe true
+        driver.getPageSource().contains("Sofi Oksanen").shouldBe true
     }
 }
