@@ -10,13 +10,13 @@
     </head>
     <body>
         <h1>Bibtexinator</h1>
+        <ul th:each="book : ${books}">
+            <li th:text="${book.author}">Author</li>
+            <li th:text="${book.title}">Title</li>
+            <li th:text="${book.year}">Year</li>
+            <li th:text="${book.publisher}">Publisher</li>
+        </ul>
         <form action="#" th:action="@{/bibtexinator/save}" th:object="${book}" method="POST">
-            <ul th:each="book : ${books}">
-                <li th:text="${book.author}">Author</li>
-                <li th:text="${book.title}">Title</li>
-                <li th:text="${book.year}">Year</li>
-                <li th:text="${book.publisher}">Publisher</li>
-            </ul>
             <table>
                 <tr>
                     <td>Author: </td>
