@@ -5,8 +5,9 @@
         <title>Bibtexinator</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#222831" /> <!-- For mobile Chrome -->
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css' />
-        <link rel="stylesheet" th:href="@{/css/style.css}" />
+        <!-- link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css' /-->
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+        <!-- link rel="stylesheet" th:href="@{/css/style.css}" /-->
     </head>
     <body>
         <h1>Bibtexinator</h1>
@@ -17,7 +18,7 @@
             <li th:text="${book.publisher}">Publisher</li>
         </ul>
         <form action="#" th:action="@{/bibtexinator/save}" th:object="${book}" method="POST">
-            <table>
+            <table class="table">
                 <tr>
                     <td>Author: </td>
                     <td><input name="author" type="text" th:field="*{author}" /></td>
@@ -35,7 +36,7 @@
                     <td><input name="publisher" type="text" th:field="*{publisher}" /></td>
                 </tr>
                 <tr>
-                    <td><button name="add" type="submit">Submit</button></td>
+                    <td><button name="add" type="submit" class="btn btn-default">Submit</button></td>
                 </tr>
             </table>
         </form>
