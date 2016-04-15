@@ -1,6 +1,7 @@
 package app.controller;
 
 import app.domain.Book;
+import app.domain.FileForm;
 import app.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,7 @@ public class BibtexController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String redirect(Model model) {
+        model.addAttribute("FileForm", new FileForm());
         model.addAttribute("books", bookRepository.findAll());
         return "bibtexinator";
     }
