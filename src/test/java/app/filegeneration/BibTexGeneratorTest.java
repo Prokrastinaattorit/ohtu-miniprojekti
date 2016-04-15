@@ -5,6 +5,7 @@
  */
 package app.filegeneration;
 
+import app.domain.Book;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,24 +18,34 @@ import static org.junit.Assert.*;
  * @author milla
  */
 public class BibTexGeneratorTest {
+
     public BibTexGenerator bibtexnator;
-    
+
     public BibTexGeneratorTest() {
     }
-    
-    
+
     @Before
     public void setUp() {
         bibtexnator = new BibTexGenerator();
     }
-    
+
     @After
     public void tearDown() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    @Test
+    public void testGenerateBook() {
+        Book book = new Book();
+        book.setAuthor("author");
+        book.setPublisher("publisher");
+        book.setYear("2008");
+        book.setTitle("title");
+        String result = bibtexnator.booktEntryToBibTex(book);
+        assertEquals(result, "@book{au08,\n"
+                + "author = {author},\n"
+                + "title = {title},\n"
+                + "year = {2008},\n"
+                + "publisher = {publisher},\n"
+                + "}");
+    }
 }

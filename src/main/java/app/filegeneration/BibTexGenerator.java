@@ -1,38 +1,56 @@
-
 package app.filegeneration;
 
 import app.domain.Book;
+import app.domain.Entry;
 
 public class BibTexGenerator {
 
     public BibTexGenerator() {
     }
-    
-    public String booktEntryToBibTex(Book book){
+
+    public String booktEntryToBibTex(Book book) {
         StringBuilder sb = new StringBuilder();
-        sb.append("@book{");
-        sb.append(generateCite(book.getAuthor(),book.getYear()));
-        sb.append(",\n");
-        sb.append("author = {");
-        sb.append(book.getAuthor());
-        sb.append("},\n");
-        sb.append("title = {");
-        sb.append(book.getTitle());
-        sb.append("},\n");
-        sb.append("year = {");
-        sb.append(book.getYear());
-        sb.append("},\n");
+        generateStart(sb, "@book", book);
+        addAuthor(sb, book);
+        addTitle(sb, book);
+        addYear(sb, book);
         sb.append("publisher = {");
         sb.append(book.getPublisher());
-        sb.append("},\n");
-        sb.append("}");
+        addEnd(sb);
         return sb.toString();
     }
 
     private String generateCite(String author, String year) {
-        return author.substring(0, 2)+year.substring(1,3);
+        return author.substring(0, 2) + year.substring(2, 4);
     }
-    
-    
-    
+
+    private void addAuthor(StringBuilder sb, Entry entry) {
+        sb.append("author = {");
+        sb.append(entry.getAuthor());
+        sb.append("},\n");
+    }
+
+    private void addTitle(StringBuilder sb, Entry entry) {
+        sb.append("title = {");
+        sb.append(entry.getTitle());
+        sb.append("},\n");
+    }
+
+    private void addYear(StringBuilder sb, Entry entry) {
+        sb.append("year = {");
+        sb.append(entry.getYear());
+        sb.append("},\n");
+    }
+
+    private void generateStart(StringBuilder sb, String entryName, Entry entry) {
+        sb.append(entryName);
+        sb.append("{");
+        sb.append(generateCite(entry.getAuthor(), entry.getYear()));
+        sb.append(",\n");
+    }
+
+    private void addEnd(StringBuilder sb) {
+        sb.append("},\n}");
+    }
+
 }
