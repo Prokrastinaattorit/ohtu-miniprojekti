@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
-@RequestMapping("/bibtexinator")
+@RequestMapping("bibtexinator")
 public class BibtexController {
     
     @Autowired
