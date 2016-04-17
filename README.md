@@ -3,6 +3,8 @@
 
 Ohjelmistotuotantokurssin miniprojekti, kevät 2016.
 
+Sovellus:  https://bibtexinator.herokuapp.com/bibtexinator
+
 Backlog: https://trello.com/b/I76kFLET/ohtuminiproju
 
 **HUOMIO!** Travis ei ainakaan toistaiseksi aja easyb-testejä, niiden ajamiseksi suorita:
