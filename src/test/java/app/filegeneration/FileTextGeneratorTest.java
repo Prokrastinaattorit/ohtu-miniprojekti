@@ -75,12 +75,12 @@ public class FileTextGeneratorTest {
                 .andReturn();
 
         assertEquals("@article{au15,\n"
-                + "author = {author},\n"
-                + "title = {title},\n"
-                + "year = {2015},\n"
-                + "journal = {journal},\n"
-                + "volume = {5},\n"
-                + "pages = {2-10},\n"
+                + "  author = {author},\n"
+                + "  title = {title},\n"
+                + "  year = {2015},\n"
+                + "  journal = {journal},\n"
+                + "  volume = {5},\n"
+                + "  pages = {2-10},\n"
                 + "}\n\n", g.generateBibtexFromEntrys());
     }
 
@@ -94,19 +94,19 @@ public class FileTextGeneratorTest {
                 .andReturn();
 
         assertEquals("@article{au80,\n"
-                + "author = {author1},\n"
-                + "title = {title1},\n"
-                + "year = {1980},\n"
-                + "journal = {journal},\n"
-                + "volume = {11},\n"
-                + "pages = {12},\n"
+                + "  author = {author1},\n"
+                + "  title = {title1},\n"
+                + "  year = {1980},\n"
+                + "  journal = {journal},\n"
+                + "  volume = {11},\n"
+                + "  pages = {12},\n"
                 + "}\n"
                 + "\n"
                 + "@book{au00,\n"
-                + "author = {author2},\n"
-                + "title = {title2},\n"
-                + "year = {2000},\n"
-                + "publisher = {publisher},\n"
+                + "  author = {author2},\n"
+                + "  title = {title2},\n"
+                + "  year = {2000},\n"
+                + "  publisher = {publisher},\n"
                 + "}\n\n", g.generateBibtexFromEntrys());
     }
 }
