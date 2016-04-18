@@ -54,17 +54,17 @@ public class FileTextGeneratorTest {
                 .andReturn();
 
         assertEquals("@book{au13,\n"
-                + "author = {author},\n"
-                + "title = {title},\n"
-                + "year = {2013},\n"
-                + "publisher = {publisher},\n"
+                + "  author = {author},\n"
+                + "  title = {title},\n"
+                + "  year = {2013},\n"
+                + "  publisher = {publisher},\n"
                 + "}\n"
                 + "\n"
                 + "@book{au99,\n"
-                + "author = {author2},\n"
-                + "title = {title2},\n"
-                + "year = {1999},\n"
-                + "publisher = {publisher2},\n"
+                + "  author = {author2},\n"
+                + "  title = {title2},\n"
+                + "  year = {1999},\n"
+                + "  publisher = {publisher2},\n"
                 + "}\n\n", g.generateBibtexFromEntrys());
     }
 

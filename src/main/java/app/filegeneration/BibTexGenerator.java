@@ -5,6 +5,7 @@ import app.domain.Book;
 import app.domain.Entry;
 
 public class BibTexGenerator {
+    private final String tab = "  ";
 
     public BibTexGenerator() {
     }
@@ -40,42 +41,49 @@ public class BibTexGenerator {
     }
 
     private void addAuthor(StringBuilder sb, Entry entry) {
+        sb.append(tab);
         sb.append("author = {");
         sb.append(entry.getAuthor());
         sb.append("},\n");
     }
-    
-        private void addPublisher(StringBuilder sb, String publisher) {
+
+    private void addPublisher(StringBuilder sb, String publisher) {
+        sb.append(tab);
         sb.append("publisher = {");
         sb.append(publisher);
         sb.append("},\n");
     }
 
     private void addTitle(StringBuilder sb, Entry entry) {
+        sb.append(tab);
         sb.append("title = {");
         sb.append(entry.getTitle());
         sb.append("},\n");
     }
 
     private void addVolume(StringBuilder sb, String volume) {
+        sb.append(tab);
         sb.append("volume = {");
         sb.append(volume);
         sb.append("},\n");
     }
 
     private void addPages(StringBuilder sb, String pages) {
+        sb.append(tab);
         sb.append("pages = {");
         sb.append(pages);
         sb.append("},\n");
     }
-    
+
     private void addJournal(StringBuilder sb, String journal) {
+        sb.append(tab);
         sb.append("journal = {");
         sb.append(journal);
         sb.append("},\n");
     }
 
     private void addYear(StringBuilder sb, Entry entry) {
+        sb.append(tab);
         sb.append("year = {");
         sb.append(entry.getYear());
         sb.append("},\n");

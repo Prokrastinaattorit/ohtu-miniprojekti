@@ -38,10 +38,10 @@ public class BibTexGeneratorTest {
         String result = bibtexnator.booktEntryToBibTex(book);
         System.out.println(result);
         assertEquals(result, "@book{au08,\n"
-                + "author = {author},\n"
-                + "title = {title},\n"
-                + "year = {2008},\n"
-                + "publisher = {publisher},\n"
+                + "  author = {author},\n"
+                + "  title = {title},\n"
+                + "  year = {2008},\n"
+                + "  publisher = {publisher},\n"
                 + "}\n");
     }
 
@@ -58,12 +58,12 @@ public class BibTexGeneratorTest {
         String result = bibtexnator.articletEntryToBibTex(article);
         System.out.println(result);
         assertEquals(result, "@article{ar08,\n"
-                + "author = {article},\n"
-                + "title = {title},\n"
-                + "year = {2008},\n"
-                + "journal = {journal},\n"
-                + "volume = {volume},\n"
-                + "pages = {pages},\n"
+                + "  author = {article},\n"
+                + "  title = {title},\n"
+                + "  year = {2008},\n"
+                + "  journal = {journal},\n"
+                + "  volume = {volume},\n"
+                + "  pages = {pages},\n"
                 + "}\n");
 
     }
