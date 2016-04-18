@@ -27,7 +27,6 @@ public class FileTextGenerator {
         for (Book book : bookRepository.findAll()) {
             sb.append(bibtexGenerator.booktEntryToBibTex(book));
             sb.append("\n");
-            sb.append("\n");
         }
 
         for (Article article : articleRepository.findAll()) {
