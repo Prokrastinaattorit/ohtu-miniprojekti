@@ -5,6 +5,7 @@ import app.repositories.BookRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import static org.junit.Assert.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -19,6 +20,7 @@ import org.springframework.web.context.WebApplicationContext;
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
 public class FileTextGeneratorTest {
+
     @Autowired
     private WebApplicationContext webAppContext;
     @Autowired
@@ -30,6 +32,7 @@ public class FileTextGeneratorTest {
     @Before
     public void setUp() {
         mockMvc = MockMvcBuilders.webAppContextSetup(webAppContext).build();
+        bookRepository.deleteAll();
     }
 
     @Test
@@ -40,7 +43,19 @@ public class FileTextGeneratorTest {
         mockMvc.perform(post("/bibtexinator/saveBook").param("author", "author2").param("title", "title2").param("year", "1999").param("publisher", "publisher2"))
                 .andExpect(status().is3xxRedirection())
                 .andReturn();
-        
-        System.out.println(g.generateBibtexFromEntrys());
+
+        assertEquals("@book{au13,\n"
+                + "author = {author},\n"
+                + "title = {title},\n"
+                + "year = {2013},\n"
+                + "publisher = {publisher},\n"
+                + "}\n"
+                + "\n"
+                + "@book{au99,\n"
+                + "author = {author2},\n"
+                + "title = {title2},\n"
+                + "year = {1999},\n"
+                + "publisher = {publisher2},\n"
+                + "}\n\n", g.generateBibtexFromEntrys());
     }
 }
