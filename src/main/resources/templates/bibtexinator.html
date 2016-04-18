@@ -12,18 +12,18 @@
     <body>
         <h1>Bibtexinator</h1>
         <ul th:each="book : ${books}">
-            <li th:text="${book.author}">Author</li>
-            <li th:text="${book.title}">Title</li>
-            <li th:text="${book.year}">Year</li>
-            <li th:text="${book.publisher}">Publisher</li>
+            <li>Author: <span th:text="${book.author}"></span></li>
+            <li>Title: <span th:text="${book.title}"></span></li>
+            <li>Year: <span th:text="${book.year}"></span></li>
+            <li>Publisher: <span th:text="${book.publisher}"></span></li>
         </ul>
         <ul th:each="article : ${articles}">
             <li>Author: <span th:text="${article.author}"></span></li>
-            <li th:text="${article.title}">Title</li>
-            <li th:text="${article.year}">Year</li>
-            <li th:text="${article.journal}">Journal</li>
-            <li th:text="${article.volume}">Volume</li>
-            <li th:text="${article.pages}">Pages</li>
+            <li>Title: <span th:text="${article.title}"></span></li>
+            <li>Year: <span th:text="${article.year}"></span></li>
+            <li>Journal: <span th:text="${article.journal}"></span></li>
+            <li>Volume: <span th:text="${article.volume}"></span></li>
+            <li>Pages: <span th:text="${article.pages}"></span></li>
         </ul>
         <form action="#" th:action="@{/bibtexinator/saveBook}" th:object="${book}" method="POST">
             <table class="table">
