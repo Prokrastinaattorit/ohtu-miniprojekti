@@ -5,6 +5,8 @@
  */
 package app.controller;
 
+import app.filegeneration.FileTextGenerator;
+import groovy.transform.AutoClone;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
@@ -14,6 +16,7 @@ import java.io.PrintWriter;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,6 +43,10 @@ public class FileDownloadController {
     /**
      * Method for handling file download request from client
      */
+    
+    @Autowired
+    private FileTextGenerator ftg;
+    
     @RequestMapping(method = RequestMethod.GET)
     public void doDownload(HttpServletRequest request, HttpServletResponse response,
             @RequestParam(required = false, defaultValue = "generated") String fileName) throws IOException {
@@ -56,11 +63,13 @@ public class FileDownloadController {
         File downloadFile = new File(fullPath);
         downloadFile.createNewFile();
 
-        //write generated text (!)
+        //write generated text
+        
         PrintWriter pw = null;
         FileWriter fw = new FileWriter(downloadFile, true);
         pw = new PrintWriter(fw);
-        pw.println("Generated text be here!");
+        System.out.println(ftg.generateBibtexFromEntrys());
+        pw.println(ftg.generateBibtexFromEntrys());
         pw.close();
 
         FileInputStream inputStream = new FileInputStream(downloadFile);
