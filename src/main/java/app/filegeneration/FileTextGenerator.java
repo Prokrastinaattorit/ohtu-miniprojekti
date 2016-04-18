@@ -24,13 +24,13 @@ public class FileTextGenerator {
     public String generateBibtexFromEntrys() {
         StringBuilder sb = new StringBuilder();
 
-        for (Book book : bookRepository.findAll()) {
-            sb.append(bibtexGenerator.booktEntryToBibTex(book));
+        for (Article article : articleRepository.findAll()) {
+            sb.append(bibtexGenerator.articletEntryToBibTex(article));
             sb.append("\n");
         }
 
-        for (Article article : articleRepository.findAll()) {
-            sb.append(bibtexGenerator.articletEntryToBibTex(article));
+        for (Book book : bookRepository.findAll()) {
+            sb.append(bibtexGenerator.booktEntryToBibTex(book));
             sb.append("\n");
         }
 

@@ -67,4 +67,46 @@ public class FileTextGeneratorTest {
                 + "publisher = {publisher2},\n"
                 + "}\n\n", g.generateBibtexFromEntrys());
     }
+
+    @Test
+    public void generatesCorrectText2() throws Exception {
+        mockMvc.perform(post("/bibtexinator/saveArticle").param("author", "author").param("title", "title").param("year", "2015").param("journal", "journal").param("volume", "5").param("pages", "2-10"))
+                .andExpect(status().is3xxRedirection())
+                .andReturn();
+
+        assertEquals("@article{au15,\n"
+                + "author = {author},\n"
+                + "title = {title},\n"
+                + "year = {2015},\n"
+                + "journal = {journal},\n"
+                + "volume = {5},\n"
+                + "pages = {2-10},\n"
+                + "}\n\n", g.generateBibtexFromEntrys());
+    }
+
+    @Test
+    public void generatesCorrectText3() throws Exception {
+        mockMvc.perform(post("/bibtexinator/saveArticle").param("author", "author1").param("title", "title1").param("year", "1980").param("journal", "journal").param("volume", "11").param("pages", "12"))
+                .andExpect(status().is3xxRedirection())
+                .andReturn();
+        mockMvc.perform(post("/bibtexinator/saveBook").param("author", "author2").param("title", "title2").param("year", "2000").param("publisher", "publisher"))
+                .andExpect(status().is3xxRedirection())
+                .andReturn();
+
+        assertEquals("@article{au80,\n"
+                + "author = {author1},\n"
+                + "title = {title1},\n"
+                + "year = {1980},\n"
+                + "journal = {journal},\n"
+                + "volume = {11},\n"
+                + "pages = {12},\n"
+                + "}\n"
+                + "\n"
+                + "@book{au00,\n"
+                + "author = {author2},\n"
+                + "title = {title2},\n"
+                + "year = {2000},\n"
+                + "publisher = {publisher},\n"
+                + "}\n\n", g.generateBibtexFromEntrys());
+    }
 }
