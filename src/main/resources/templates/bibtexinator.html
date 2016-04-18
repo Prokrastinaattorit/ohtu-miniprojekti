@@ -17,7 +17,15 @@
             <li th:text="${book.year}">Year</li>
             <li th:text="${book.publisher}">Publisher</li>
         </ul>
-        <form action="#" th:action="@{/bibtexinator/save}" th:object="${book}" method="POST">
+        <ul th:each="article : ${articles}">
+            <li>Author: <span th:text="${article.author}"></span></li>
+            <li th:text="${article.title}">Title</li>
+            <li th:text="${article.year}">Year</li>
+            <li th:text="${article.journal}">Journal</li>
+            <li th:text="${article.volume}">Volume</li>
+            <li th:text="${article.pages}">Pages</li>
+        </ul>
+        <form action="#" th:action="@{/bibtexinator/saveBook}" th:object="${book}" method="POST">
             <table class="table">
                 <tr>
                     <td>Author: </td>
@@ -34,6 +42,37 @@
                 <tr>
                     <td>Publisher: </td>
                     <td><input name="publisher" type="text" th:field="*{publisher}" /></td>
+                </tr>
+                <tr>
+                    <td><button name="add" type="submit" class="btn btn-default">Submit</button></td>
+                </tr>
+            </table>
+        </form>
+        <form action="#" th:action="@{/bibtexinator/saveArticle}" th:object="${article}" method="POST">
+            <table class="table">
+                <tr>
+                    <td>Author: </td>
+                    <td><input name="author" type="text" th:field="*{author}" /></td>
+                </tr>
+                <tr>
+                    <td>Title: </td>
+                    <td><input name="title" type="text" th:field="*{title}" /></td>
+                </tr>
+                <tr>
+                    <td>Year: </td>
+                    <td><input name="year" type="text" th:field="*{year}" /></td>
+                </tr>
+                <tr>
+                    <td>Journal: </td>
+                    <td><input name="publisher" type="text" th:field="*{journal}" /></td>
+                </tr>
+                <tr>
+                    <td>Volume: </td>
+                    <td><input name="publisher" type="text" th:field="*{volume}" /></td>
+                </tr>
+                <tr>
+                    <td>Pages: </td>
+                    <td><input name="publisher" type="text" th:field="*{pages}" /></td>
                 </tr>
                 <tr>
                     <td><button name="add" type="submit" class="btn btn-default">Submit</button></td>

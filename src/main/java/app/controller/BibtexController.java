@@ -1,7 +1,9 @@
 package app.controller;
 
+import app.domain.Article;
 import app.domain.Book;
 import app.domain.FileForm;
+import app.repositories.ArticleRepository;
 import app.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,9 @@ public class BibtexController {
     @Autowired
     BookRepository bookRepository;
     
+    @Autowired
+    ArticleRepository articleRepository;
+    
     @ModelAttribute
     private Book getBook() {
         return new Book();
@@ -28,10 +33,12 @@ public class BibtexController {
     public String redirect(Model model) {
         model.addAttribute("FileForm", new FileForm());
         model.addAttribute("books", bookRepository.findAll());
+        model.addAttribute("article", new Article());
+        model.addAttribute("articles", articleRepository.findAll());
         return "bibtexinator";
     }
     
-    @RequestMapping(method = RequestMethod.POST, value="/save")
+    @RequestMapping(method = RequestMethod.POST, value="/saveBook")
     public String saveBook(@ModelAttribute Book book,
             BindingResult bindingResult) {
         
@@ -39,6 +46,18 @@ public class BibtexController {
             return "bibtexinator";
         }
         bookRepository.save(book);
+        
+        return "redirect:/bibtexinator";
+    }
+    
+    @RequestMapping(method = RequestMethod.POST, value="/saveArticle")
+    public String saveBook(@ModelAttribute Article article,
+            BindingResult bindingResult) {
+        
+        if (bindingResult.hasErrors()) {
+            return "bibtexinator";
+        }
+        articleRepository.save(article);
         
         return "redirect:/bibtexinator";
     }
