@@ -1,6 +1,7 @@
 package app.filegeneration;
 
 import app.Application;
+import app.repositories.ArticleRepository;
 import app.repositories.BookRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,6 +27,8 @@ public class FileTextGeneratorTest {
     @Autowired
     private BookRepository bookRepository;
     @Autowired
+    private ArticleRepository articleRepository;
+    @Autowired
     private FileTextGenerator g;
     private MockMvc mockMvc;
 
@@ -33,6 +36,7 @@ public class FileTextGeneratorTest {
     public void setUp() {
         mockMvc = MockMvcBuilders.webAppContextSetup(webAppContext).build();
         bookRepository.deleteAll();
+        articleRepository.deleteAll();
     }
 
     @Test
