@@ -5,18 +5,13 @@
  */
 package app.filegeneration;
 
+import app.domain.Article;
 import app.domain.Book;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author milla
- */
 public class BibTexGeneratorTest {
 
     public BibTexGenerator bibtexnator;
@@ -41,11 +36,36 @@ public class BibTexGeneratorTest {
         book.setYear("2008");
         book.setTitle("title");
         String result = bibtexnator.booktEntryToBibTex(book);
+        System.out.println(result);
         assertEquals(result, "@book{au08,\n"
                 + "author = {author},\n"
                 + "title = {title},\n"
                 + "year = {2008},\n"
                 + "publisher = {publisher},\n"
-                + "}");
+                + "}\n");
     }
+
+    @Test
+    public void testGenerateArticle() {
+        Article article = new Article();
+        article.setAuthor("article");
+        article.setJournal("journal");
+        article.setYear("2008");
+        article.setTitle("title");
+        article.setPages("pages");
+        article.setVolume("volume");
+
+        String result = bibtexnator.articletEntryToBibTex(article);
+        System.out.println(result);
+        assertEquals(result, "@article{ar08,\n"
+                + "author = {article},\n"
+                + "title = {title},\n"
+                + "year = {2008},\n"
+                + "journal = {journal},\n"
+                + "volume = {volume},\n"
+                + "pages = {pages},\n"
+                + "}\n");
+
+    }
+
 }

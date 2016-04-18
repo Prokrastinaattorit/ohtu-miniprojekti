@@ -1,5 +1,6 @@
 package app.filegeneration;
 
+import app.domain.Article;
 import app.domain.Book;
 import app.domain.Entry;
 
@@ -14,8 +15,22 @@ public class BibTexGenerator {
         addAuthor(sb, book);
         addTitle(sb, book);
         addYear(sb, book);
-        sb.append("publisher = {");
-        sb.append(book.getPublisher());
+        addPublisher(sb, book.getPublisher());
+        addEnd(sb);
+        return sb.toString();
+    }
+
+    public String articletEntryToBibTex(Article article) {
+        StringBuilder sb = new StringBuilder();
+        generateStart(sb, "@article", article);
+        addAuthor(sb, article);
+        addTitle(sb, article);
+        addYear(sb, article);
+        addJournal(sb, article.getJournal());
+        addVolume(sb, article.getVolume());
+        if (article.getPages() != null) {
+            addPages(sb, article.getPages());
+        }
         addEnd(sb);
         return sb.toString();
     }
@@ -29,10 +44,34 @@ public class BibTexGenerator {
         sb.append(entry.getAuthor());
         sb.append("},\n");
     }
+    
+        private void addPublisher(StringBuilder sb, String publisher) {
+        sb.append("publisher = {");
+        sb.append(publisher);
+        sb.append("},\n");
+    }
 
     private void addTitle(StringBuilder sb, Entry entry) {
         sb.append("title = {");
         sb.append(entry.getTitle());
+        sb.append("},\n");
+    }
+
+    private void addVolume(StringBuilder sb, String volume) {
+        sb.append("volume = {");
+        sb.append(volume);
+        sb.append("},\n");
+    }
+
+    private void addPages(StringBuilder sb, String pages) {
+        sb.append("pages = {");
+        sb.append(pages);
+        sb.append("},\n");
+    }
+    
+    private void addJournal(StringBuilder sb, String journal) {
+        sb.append("journal = {");
+        sb.append(journal);
         sb.append("},\n");
     }
 
@@ -50,7 +89,7 @@ public class BibTexGenerator {
     }
 
     private void addEnd(StringBuilder sb) {
-        sb.append("},\n}");
+        sb.append("}\n");
     }
 
 }
