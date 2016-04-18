@@ -1,5 +1,9 @@
 # ohtu-miniprojekti
-[![Build Status](https://travis-ci.org/Prokrastinaattorit/ohtu-miniprojekti.svg?branch=master)](https://travis-ci.org/Prokrastinaattorit/ohtu-miniprojekti)
+[![Build Status](https://travis-ci.org/Prokrastinaattorit/ohtu-miniprojekti.svg?branch=master)](https://travis-ci.org/Prokrastinaattorit/ohtu-miniprojekti) [![Coverage Status](
+https://coveralls.io/repos/github/Prokrastinaattorit/ohtu-miniprojekti/badge.svg?branch=master
+)](
+https://coveralls.io/github/Prokrastinaattorit/ohtu-miniprojekti?branch=master
+)
 
 Ohjelmistotuotantokurssin miniprojekti, kevät 2016.
 
