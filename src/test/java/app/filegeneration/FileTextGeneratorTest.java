@@ -34,10 +34,10 @@ public class FileTextGeneratorTest {
 
     @Test
     public void test() throws Exception {
-        mockMvc.perform(post("/bibtexinator/save").param("author", "author").param("title", "title").param("year", "2013").param("publisher", "publisher"))
+        mockMvc.perform(post("/bibtexinator/saveBook").param("author", "author").param("title", "title").param("year", "2013").param("publisher", "publisher"))
                 .andExpect(status().is3xxRedirection())
                 .andReturn();
-        mockMvc.perform(post("/bibtexinator/save").param("author", "author2").param("title", "title2").param("year", "1999").param("publisher", "publisher2"))
+        mockMvc.perform(post("/bibtexinator/saveBook").param("author", "author2").param("title", "title2").param("year", "1999").param("publisher", "publisher2"))
                 .andExpect(status().is3xxRedirection())
                 .andReturn();
         
