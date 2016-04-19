@@ -53,14 +53,14 @@ public class FileTextGeneratorTest {
                 .andExpect(status().is3xxRedirection())
                 .andReturn();
 
-        assertEquals("@book{au13,\n"
+        assertEquals("@book{a13,\n"
                 + "  author = {author},\n"
                 + "  title = {title},\n"
                 + "  year = {2013},\n"
                 + "  publisher = {publisher},\n"
                 + "}\n"
                 + "\n"
-                + "@book{au99,\n"
+                + "@book{a99,\n"
                 + "  author = {author2},\n"
                 + "  title = {title2},\n"
                 + "  year = {1999},\n"
@@ -74,7 +74,7 @@ public class FileTextGeneratorTest {
                 .andExpect(status().is3xxRedirection())
                 .andReturn();
 
-        assertEquals("@article{au15,\n"
+        assertEquals("@article{a15,\n"
                 + "  author = {author},\n"
                 + "  title = {title},\n"
                 + "  year = {2015},\n"
@@ -93,7 +93,7 @@ public class FileTextGeneratorTest {
                 .andExpect(status().is3xxRedirection())
                 .andReturn();
 
-        assertEquals("@article{au80,\n"
+        assertEquals("@article{a80,\n"
                 + "  author = {author1},\n"
                 + "  title = {title1},\n"
                 + "  year = {1980},\n"
@@ -102,7 +102,7 @@ public class FileTextGeneratorTest {
                 + "  pages = {12},\n"
                 + "}\n"
                 + "\n"
-                + "@book{au00,\n"
+                + "@book{a00,\n"
                 + "  author = {author2},\n"
                 + "  title = {title2},\n"
                 + "  year = {2000},\n"

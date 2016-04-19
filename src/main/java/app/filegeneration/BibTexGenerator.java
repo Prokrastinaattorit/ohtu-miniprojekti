@@ -42,7 +42,15 @@ public class BibTexGenerator {
     }
 
     private String generateCite(String author, String year) {
-        return author.substring(0, 2) + year.substring(2, 4);
+        String cite = "";
+        if (author != null) {
+            cite = cite + getFirstLettersOfAuthors(author);
+        }
+        if (year != null && year.length() >= 2) {
+            cite = cite + year.substring(year.length() - 2, year.length());
+        }
+        //TODO: Should replace ä and ö to something else?
+        return cite;
     }
 
     private void addAuthor(StringBuilder sb, Entry entry) {
@@ -105,6 +113,15 @@ public class BibTexGenerator {
 
     private void addEnd(StringBuilder sb) {
         sb.append("}\n");
+    }
+
+    private String getFirstLettersOfAuthors(String author) {
+        String[] osat = author.split("and");
+        String result = "";
+        for (String string : osat) {
+            result = result + string.charAt(0);
+        }
+        return result;
     }
 
 }
