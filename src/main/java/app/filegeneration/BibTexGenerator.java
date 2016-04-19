@@ -5,6 +5,7 @@ import app.domain.Book;
 import app.domain.Entry;
 
 public class BibTexGenerator {
+
     private final String tab = "  ";
 
     public BibTexGenerator() {
@@ -18,7 +19,7 @@ public class BibTexGenerator {
         addYear(sb, book);
         addPublisher(sb, book.getPublisher());
         addEnd(sb);
-        return sb.toString();
+        return replaceFinnishLetters(sb.toString());
     }
 
     public String articletEntryToBibTex(Article article) {
@@ -29,11 +30,15 @@ public class BibTexGenerator {
         addYear(sb, article);
         addJournal(sb, article.getJournal());
         addVolume(sb, article.getVolume());
-        if (article.getPages() != null) {
-            addPages(sb, article.getPages());
-        }
+        addPages(sb, article.getPages());
         addEnd(sb);
-        return sb.toString();
+        return replaceFinnishLetters(sb.toString());
+    }
+
+    private String replaceFinnishLetters(String string) {
+        string = string.replace("ä", "\\\"{a}");
+        string = string.replace("ö", "\\\"{o}");
+        return string;
     }
 
     private String generateCite(String author, String year) {
@@ -69,10 +74,12 @@ public class BibTexGenerator {
     }
 
     private void addPages(StringBuilder sb, String pages) {
-        sb.append(tab);
-        sb.append("pages = {");
-        sb.append(pages);
-        sb.append("},\n");
+        if (pages != null) {
+            sb.append(tab);
+            sb.append("pages = {");
+            sb.append(pages);
+            sb.append("},\n");
+        }
     }
 
     private void addJournal(StringBuilder sb, String journal) {
