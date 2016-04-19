@@ -4,7 +4,7 @@ https://coveralls.io/repos/github/Prokrastinaattorit/ohtu-miniprojekti/badge.svg
 )](
 https://coveralls.io/github/Prokrastinaattorit/ohtu-miniprojekti?branch=master
 ) 
-[![GitHub release](http://github-release-version.herokuapp.com/github/Prokrastinaattorit/ohtu-miniprojekti/release.svg?style=flat)](https://github.com/Prokrastinaattorit/ohtu-miniprojekti/releases/latest)
+[![GitHub release](https://img.shields.io/badge/release-sprint1-brightgreen.svg?style=flat)](https://github.com/Prokrastinaattorit/ohtu-miniprojekti/releases/latest)
 
 Ohjelmistotuotantokurssin miniprojekti, kevät 2016.
 
