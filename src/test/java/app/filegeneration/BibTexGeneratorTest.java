@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package app.filegeneration;
 
 import app.domain.Article;
@@ -22,10 +17,6 @@ public class BibTexGeneratorTest {
     @Before
     public void setUp() {
         bibtexnator = new BibTexGenerator();
-    }
-
-    @After
-    public void tearDown() {
     }
 
     @Test
@@ -66,6 +57,23 @@ public class BibTexGeneratorTest {
                 + "  pages = {pages},\n"
                 + "}\n");
 
+    }
+
+    @Test
+    public void testFinnishLetters() {
+        Book book = new Book();
+        book.setAuthor("Kirja Kirjailija");
+        book.setPublisher("publisher");
+        book.setYear("2018");
+        book.setTitle("Ääkköset");
+        String result = bibtexnator.booktEntryToBibTex(book);
+        System.out.println(result);
+        assertEquals(result, "@book{K18,\n"
+                + "  author = {Kirja Kirjailija},\n"
+                + "  title = {\"{A}\"{a}kk\"{o}set},\n"
+                + "  year = {2018},\n"
+                + "  publisher = {publisher},\n"
+                + "}\n");
     }
 
 }

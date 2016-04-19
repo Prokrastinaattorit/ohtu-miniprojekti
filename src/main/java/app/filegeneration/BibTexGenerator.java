@@ -36,8 +36,10 @@ public class BibTexGenerator {
     }
 
     private String replaceFinnishLetters(String string) {
-        string = string.replace("ä", "\\\"{a}");
-        string = string.replace("ö", "\\\"{o}");
+        string = string.replace("ä", "\"{a}");
+        string = string.replace("Ä", "\"{A}");
+        string = string.replace("ö", "\"{o}");
+        string = string.replace("Ö", "\"{O}");
         return string;
     }
 
