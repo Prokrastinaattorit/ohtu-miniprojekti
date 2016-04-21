@@ -10,15 +10,15 @@ scenario "User can add a valid book entry", {
     }
 
     when 'user fills the @book form and submits', {
-        element = driver.findElement(By.name("author"));
+        element = driver.findElement(By.id("bookAuthor"));
         element.sendKeys("Sofi Oksanen");
-        element = driver.findElement(By.name("title"));
+        element = driver.findElement(By.id("bookTitle"));
         element.sendKeys("Puhdistus");
-        element = driver.findElement(By.name("year"));
+        element = driver.findElement(By.id("bookYear"));
         element.sendKeys("2008");
-        element = driver.findElement(By.name("publisher"));
+        element = driver.findElement(By.id("bookPublisher"));
         element.sendKeys("WSOY");
-        element = driver.findElement(By.name("add"));
+        element = driver.findElement(By.name("addBook"));
         element.submit();
     }
  

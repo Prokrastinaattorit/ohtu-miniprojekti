@@ -29,22 +29,23 @@
             <table class="table">
                 <tr>
                     <td>Author: </td>
-                    <td><input name="author" type="text" th:field="*{author}" /></td>
+                    <td><input name="author" id="bookAuthor" type="text" th:field="*{author}" /></td>
+                    <td>äääääää</td>
                 </tr>
                 <tr>
                     <td>Title: </td>
-                    <td><input name="title" type="text" th:field="*{title}" /></td>
+                    <td><input name="title" id="bookTitle" type="text" th:field="*{title}" /></td>
                 </tr>
                 <tr>
                     <td>Year: </td>
-                    <td><input name="year" type="text" th:field="*{year}" /></td>
+                    <td><input name="tear" id="bookYear" type="text" th:field="*{year}" /></td>
                 </tr>
                 <tr>
                     <td>Publisher: </td>
-                    <td><input name="publisher" type="text" th:field="*{publisher}" /></td>
+                    <td><input name="publisher" id="bookPublisher" type="text" th:field="*{publisher}" /></td>
                 </tr>
                 <tr>
-                    <td><button name="add" type="submit" class="btn btn-default">Submit</button></td>
+                    <td><button name="addBook" type="submit" class="btn btn-default">Submit</button></td>
                 </tr>
             </table>
         </form>
@@ -52,30 +53,30 @@
             <table class="table">
                 <tr>
                     <td>Author: </td>
-                    <td><input name="author" type="text" th:field="*{author}" /></td>
+                    <td><input name="author" id="articleAuthor" type="text" th:field="*{author}" /></td>
                 </tr>
                 <tr>
                     <td>Title: </td>
-                    <td><input name="title" type="text" th:field="*{title}" /></td>
+                    <td><input name="title" id="articleTitle" type="text" th:field="*{title}" /></td>
                 </tr>
                 <tr>
                     <td>Year: </td>
-                    <td><input name="year" type="text" th:field="*{year}" /></td>
+                    <td><input name="year" id="articleYear" type="text" th:field="*{year}" /></td>
                 </tr>
                 <tr>
                     <td>Journal: </td>
-                    <td><input name="publisher" type="text" th:field="*{journal}" /></td>
+                    <td><input name="journal" id="articleJournal" type="text" th:field="*{journal}" /></td>
                 </tr>
                 <tr>
                     <td>Volume: </td>
-                    <td><input name="publisher" type="text" th:field="*{volume}" /></td>
+                    <td><input name="volume" id="articleVolume" type="text" th:field="*{volume}" /></td>
                 </tr>
                 <tr>
                     <td>Pages: </td>
-                    <td><input name="publisher" type="text" th:field="*{pages}" /></td>
+                    <td><input name="pages" id="articlePages" type="text" th:field="*{pages}" /></td>
                 </tr>
                 <tr>
-                    <td><button name="add" type="submit" class="btn btn-default">Submit</button></td>
+                    <td><button name="addArticle" type="submit" class="btn btn-default">Submit</button></td>
                 </tr>
             </table>
         </form>
