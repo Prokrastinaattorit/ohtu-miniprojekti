@@ -79,4 +79,34 @@ public class UserStoryTester {
         // then 'new article is created', {
         assertEquals(true, driver.getPageSource().contains("Author A"));
     }
+
+    // Description:
+    // User can add an Inproceedings entry
+    // Scenario:
+    // User can add a valid inproceedings entry
+    @Test
+    public void UserCanAddAnValidInproceedingsEntry() {
+        // given 'on frontpage', {
+        HtmlUnitDriver driver = new HtmlUnitDriver();
+        driver.get("http://localhost:8080/bibtexinator");
+
+        // when 'user fills the @inproceedings form and submits', {
+        WebElement element = driver.findElement(By.id("inAuthor"));
+        element.sendKeys("Author B");
+        element = driver.findElement(By.id("inTitle"));
+        element.sendKeys("Title of inproceedings");
+        element = driver.findElement(By.id("inBookTitle"));
+        element.sendKeys("Book title");
+        element = driver.findElement(By.id("inYear"));
+        element.sendKeys("1986");
+        element = driver.findElement(By.id("inPages"));
+        element.sendKeys("30-45");
+        element = driver.findElement(By.id("inPublisher"));
+        element.sendKeys("Publisher of inproceedings");
+        element = driver.findElement(By.name("addInproceedings"));
+        element.submit();
+
+        // then 'new inproceedings is created', {
+        assertEquals(true, driver.getPageSource().contains("Author B"));
+    }
 }
