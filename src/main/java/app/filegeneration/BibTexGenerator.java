@@ -3,6 +3,7 @@ package app.filegeneration;
 import app.domain.Article;
 import app.domain.Book;
 import app.domain.Entry;
+import app.domain.Inproceedings;
 
 public class BibTexGenerator {
 
@@ -31,6 +32,19 @@ public class BibTexGenerator {
         addJournal(sb, article.getJournal());
         addVolume(sb, article.getVolume());
         addPages(sb, article.getPages());
+        addEnd(sb);
+        return replaceFinnishLetters(sb.toString());
+    }
+
+    public String inproceedingstEntryToBibTex(Inproceedings inpr) {
+        StringBuilder sb = new StringBuilder();
+        generateStart(sb, "@article", inpr);
+        addAuthor(sb, inpr);
+        addTitle(sb, inpr);
+        addBookTitle(sb, inpr.getBookTitle());
+        addYear(sb, inpr);
+        addPages(sb, inpr.getPages());
+        addPublisher(sb, inpr.getPublisher());
         addEnd(sb);
         return replaceFinnishLetters(sb.toString());
     }
@@ -73,6 +87,13 @@ public class BibTexGenerator {
         sb.append(tab);
         sb.append("title = {");
         sb.append(entry.getTitle());
+        sb.append("},\n");
+    }
+
+    private void addBookTitle(StringBuilder sb, String bookTitle) {
+        sb.append(tab);
+        sb.append("bookTitle = {");
+        sb.append(bookTitle);
         sb.append("},\n");
     }
 

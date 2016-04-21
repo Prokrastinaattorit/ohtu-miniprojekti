@@ -2,8 +2,10 @@ package app.filegeneration;
 
 import app.domain.Article;
 import app.domain.Book;
+import app.domain.Inproceedings;
 import app.repositories.ArticleRepository;
 import app.repositories.BookRepository;
+import app.repositories.InproceedingsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +18,8 @@ public class FileTextGenerator {
     ArticleRepository articleRepository;
     @Autowired
     BookRepository bookRepository;
+    @Autowired
+    InproceedingsRepository inproceedingsRepository;
 
     public FileTextGenerator() {
         bibtexGenerator = new BibTexGenerator();
@@ -31,6 +35,11 @@ public class FileTextGenerator {
 
         for (Book book : bookRepository.findAll()) {
             sb.append(bibtexGenerator.booktEntryToBibTex(book));
+            sb.append("\n");
+        }
+
+        for (Inproceedings inproceedings : inproceedingsRepository.findAll()) {
+            sb.append(bibtexGenerator.inproceedingstEntryToBibTex(inproceedings));
             sb.append("\n");
         }
 
