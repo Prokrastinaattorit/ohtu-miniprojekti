@@ -38,7 +38,7 @@ public class BibTexGenerator {
 
     public String inproceedingstEntryToBibTex(Inproceedings inpr) {
         StringBuilder sb = new StringBuilder();
-        generateStart(sb, "@article", inpr);
+        generateStart(sb, "@inproceedings", inpr);
         addAuthor(sb, inpr);
         addTitle(sb, inpr);
         addBookTitle(sb, inpr.getBookTitle());

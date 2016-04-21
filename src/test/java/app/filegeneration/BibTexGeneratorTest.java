@@ -2,6 +2,7 @@ package app.filegeneration;
 
 import app.domain.Article;
 import app.domain.Book;
+import app.domain.Inproceedings;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -55,6 +56,29 @@ public class BibTexGeneratorTest {
                 + "  journal = {journal},\n"
                 + "  volume = {volume},\n"
                 + "  pages = {pages},\n"
+                + "}\n");
+
+    }
+
+    @Test
+    public void testGenerateInproceedings() {
+        Inproceedings inproceedings = new Inproceedings();
+        inproceedings.setAuthor("author");
+        inproceedings.setTitle("title");
+        inproceedings.setBookTitle("bookTitle");
+        inproceedings.setYear("1994");
+        inproceedings.setPages("pages");
+        inproceedings.setPublisher("publisher");
+
+        String result = bibtexnator.inproceedingstEntryToBibTex(inproceedings);
+        System.out.println(result);
+        assertEquals(result, "@inproceedings{a94,\n"
+                + "  author = {author},\n"
+                + "  title = {title},\n"
+                + "  bookTitle = {bookTitle},\n"
+                + "  year = {1994},\n"
+                + "  pages = {pages},\n"
+                + "  publisher = {publisher},\n"
                 + "}\n");
 
     }
