@@ -61,7 +61,7 @@ public class BibtexController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/saveArticle")
-    public String saveBook(@ModelAttribute Article article,
+    public String saveArticle(@Valid @ModelAttribute Article article,
             BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
