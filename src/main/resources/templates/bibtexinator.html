@@ -145,6 +145,38 @@
                     </tr>
                 </table>
             </form>
+            <h3>Add an Inproceedings</h3>
+            <form action="#" th:action="@{/bibtexinator/saveInproceedings}" th:object="${inproceedings}" method="POST">
+                <table class="table">
+                    <tr>
+                        <td>Author: </td>
+                        <td><input name="author" id="inAuthor" type="text" th:field="*{author}" /> <span style="color:rgb(200,200,200);">(in BibTeX format)</span></td>
+                    </tr>
+                    <tr>
+                        <td>Title: </td>
+                        <td><input name="title" id="inTitle" type="text" th:field="*{title}" /></td>
+                    </tr>
+                    <tr>
+                        <td>Book title: </td>
+                        <td><input name="bookTitle" id="inBookTitle" type="text" th:field="*{bookTitle}" /></td>
+                    </tr>
+                    <tr>
+                        <td>Year: </td>
+                        <td><input name="year" id="inYear" type="text" th:field="*{year}" /></td>
+                    </tr>
+                    <tr>
+                        <td>Pages: </td>
+                        <td><input name="pages" id="inPages" type="text" th:field="*{pages}" /></td>
+                    </tr>
+                    <tr>
+                        <td>Publisher: </td>
+                        <td><input name="publisher" id="inPublisher" type="text" th:field="*{publisher}" /></td>
+                    </tr>
+                    <tr>
+                        <td><button name="addInproceedings" type="submit" class="btn btn-default">Submit</button></td>
+                    </tr>
+                </table>
+            </form>
             <h2>Download BibTeX file</h2>
             <form action="#" th:action="@{/bibtexinator/download}" th:object="${FileForm}" method="GET">
                 <table class="table">

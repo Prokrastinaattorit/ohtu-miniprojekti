@@ -47,7 +47,7 @@ public class UserStoryTester {
         element.submit();
 
         // then 'new book is created', {
-        assertEquals(driver.getPageSource().contains("Sofi Oksanen"), true);
+        assertEquals(true, driver.getPageSource().contains("Sofi Oksanen"));
     }
 
     // Description:
@@ -55,7 +55,7 @@ public class UserStoryTester {
     // Scenario:
     // User can add a valid article entry
     @Test
-    public void UserCanAddAValidArticleEntry() {
+    public void UserCanAddAnValidArticleEntry() {
         // given 'on frontpage', {
         HtmlUnitDriver driver = new HtmlUnitDriver();
         driver.get("http://localhost:8080/bibtexinator");
@@ -77,6 +77,6 @@ public class UserStoryTester {
         element.submit();
 
         // then 'new article is created', {
-        assertEquals(driver.getPageSource().contains("Author A"), true);
+        assertEquals(true, driver.getPageSource().contains("Author A"));
     }
 }

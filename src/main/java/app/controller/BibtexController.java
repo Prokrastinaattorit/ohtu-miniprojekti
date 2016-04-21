@@ -3,8 +3,10 @@ package app.controller;
 import app.domain.Article;
 import app.domain.Book;
 import app.domain.FileForm;
+import app.domain.Inproceedings;
 import app.repositories.ArticleRepository;
 import app.repositories.BookRepository;
+import app.repositories.InproceedingsRepository;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +26,9 @@ public class BibtexController {
     @Autowired
     ArticleRepository articleRepository;
 
+    @Autowired
+    InproceedingsRepository inproceedingsRepository;
+
     @ModelAttribute
     private Article getArticle() {
         return new Article();
@@ -32,6 +37,11 @@ public class BibtexController {
     @ModelAttribute
     private Book getBook() {
         return new Book();
+    }
+
+    @ModelAttribute
+    private Inproceedings getInproceedings() {
+        return new Inproceedings();
     }
 
     @ModelAttribute("FileForm")
@@ -68,6 +78,18 @@ public class BibtexController {
             return "bibtexinator";
         }
         articleRepository.save(article);
+
+        return "redirect:/bibtexinator";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/saveInproceedings")
+    public String saveInproceedings(@Valid @ModelAttribute Inproceedings inproceedings,
+            BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return "bibtexinator";
+        }
+        inproceedingsRepository.save(inproceedings);
 
         return "redirect:/bibtexinator";
     }
