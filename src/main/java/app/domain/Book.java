@@ -1,11 +1,12 @@
 package app.domain;
 
 import javax.persistence.Entity;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
 public class Book extends AbstractPersistable<Long> implements Entry {
-    
+    @NotBlank
     private String author;
     private String title;
     private String year;

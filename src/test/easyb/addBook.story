@@ -1,5 +1,3 @@
-import app.*
-import app.authentication.*
 import org.openqa.selenium.*
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
