@@ -54,7 +54,7 @@
                 width: 800px;
                 margin: 0 auto;
             }
-            #entries {
+            #entryList {
                 background-color: rgb(224, 224, 224);
                 padding: 2rem;
                 font-family: monospace;
@@ -64,8 +64,9 @@
     <body>
         <div id="wrapper">
             <h1>Bibtexinator</h1>
-            <h2>Entries</h2>
-            <div id="entries">
+            <p style="text-align:center;"><a href="#entries">Entries</a> - <a href="#addEntries">Add entries</a> - <a href="#download">Download BibTeX file</a></p>
+            <h2 id="entries">Entries</h2>
+            <div id="entryList">
                 <ul th:each="book : ${books}">
                     <li>Author: <span th:text="${book.author}"></span></li>
                     <li>Title: <span th:text="${book.title}"></span></li>
@@ -88,7 +89,7 @@
                     <a id="articleType" href="#">Article</a>
                 </div>
             </div>-->
-            <h2>Add entries</h2>
+            <h2 id="addEntries">Add entries</h2>
             <h3>Add a Book</h3>
             <form action="#" th:action="@{/bibtexinator/saveBook}" th:object="${book}" method="POST">
                 <table class="table">
@@ -145,7 +146,7 @@
                     </tr>
                 </table>
             </form>
-            <h2>Download BibTeX file</h2>
+            <h2 id="download">Download BibTeX file</h2>
             <form action="#" th:action="@{/bibtexinator/download}" th:object="${FileForm}" method="GET">
                 <table class="table">
                     <tr>
