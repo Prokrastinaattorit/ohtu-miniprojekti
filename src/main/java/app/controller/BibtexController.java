@@ -55,6 +55,7 @@ public class BibtexController {
         model.addAttribute("books", bookRepository.findAll());
         model.addAttribute("article", new Article());
         model.addAttribute("articles", articleRepository.findAll());
+        model.addAttribute("inproceedingss", inproceedingsRepository.findAll());
         return "bibtexinator";
     }
 
