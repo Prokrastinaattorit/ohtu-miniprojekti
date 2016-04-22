@@ -105,7 +105,7 @@ public class BibTexGenerator {
     }
 
     private void addPages(StringBuilder sb, String pages) {
-        if (pages != null) {
+        if (pages != null && !pages.isEmpty()) {
             sb.append(tab);
             sb.append("pages = {");
             sb.append(pages);
@@ -139,7 +139,7 @@ public class BibTexGenerator {
     }
 
     private String getFirstLettersOfAuthors(String author) {
-        String[] osat = author.split("and");
+        String[] osat = author.split("and ");
         String result = "";
         for (String string : osat) {
             result = result + string.charAt(0);
