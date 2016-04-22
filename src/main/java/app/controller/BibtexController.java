@@ -71,24 +71,45 @@ public class BibtexController {
 
         return "redirect:/bibtexinator";
     }
-    
-    
+
     @RequestMapping(method = RequestMethod.POST, value = "/editBook/{id}")
     public String editBook(@Valid @ModelAttribute Book book, @PathVariable Long id,
             BindingResult bindingResult) {
 
         Book oldBook = bookRepository.findOne(id);
-        
+
         if (bindingResult.hasErrors()) {
             return "bibtexinator";
         }
-        
+
         oldBook.setAuthor(book.getAuthor());
         oldBook.setPublisher(book.getPublisher());
         oldBook.setTitle(book.getTitle());
         oldBook.setYear(book.getYear());
-        
+
         bookRepository.save(oldBook);
+
+        return "redirect:/bibtexinator";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/editArticle/{id}")
+    public String editArticle(@Valid @ModelAttribute Article article, @PathVariable Long id,
+            BindingResult bindingResult) {
+
+        Article oldArticle = articleRepository.findOne(id);
+
+        if (bindingResult.hasErrors()) {
+            return "bibtexinator";
+        }
+
+        oldArticle.setAuthor(article.getAuthor());
+        oldArticle.setJournal(article.getJournal());
+        oldArticle.setTitle(article.getTitle());
+        oldArticle.setPages(article.getPages());
+        oldArticle.setVolume(article.getVolume());
+        oldArticle.setYear(article.getYear());
+
+        articleRepository.save(oldArticle);
 
         return "redirect:/bibtexinator";
     }
