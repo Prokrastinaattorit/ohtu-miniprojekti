@@ -99,11 +99,41 @@ public class BibtexControllerTest {
 
         Assert.assertTrue(vastaus);
     }
+    
+    
 
     @Test
     public void tiedostonLatausOnnistuu() throws Exception {
         MvcResult res = mockMvc.perform(get("/bibtexinator/download").param("fileName", "bibfile"))
                 .andExpect(status().isOk())
                 .andReturn();
+    }
+    
+    @Test
+    public void editBookToimii() throws Exception {
+        
+        MvcResult res = mockMvc.perform(post("/bibtexinator/saveBook").param("author", "aaaa").param("title", "bbbb").param("year", "cccc").param("publisher", "dddd"))
+                .andExpect(status().is3xxRedirection())
+                .andReturn();
+        
+        res = mockMvc.perform(post("/bibtexinator/editBook/1").param("author", "xxxx").param("title", "yyyy").param("year", "zzzz").param("publisher", "ffff"))
+                .andExpect(status().is3xxRedirection())
+                .andReturn();
+
+        boolean vastaus = false;
+
+        if (bookRepository.findAll() != null) {
+
+            for (Book book : bookRepository.findAll()) {
+                if (book.getAuthor().equals("xxxx")
+                        && book.getTitle().equals("yyyy")
+                        && book.getYear().equals("zzzz")
+                        && book.getPublisher().equals("ffff")) {
+                    vastaus = true;
+                }
+            }
+        }
+
+        Assert.assertTrue(vastaus);
     }
 }
