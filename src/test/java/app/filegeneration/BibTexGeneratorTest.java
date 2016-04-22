@@ -23,14 +23,14 @@ public class BibTexGeneratorTest {
     @Test
     public void testGenerateBook() {
         Book book = new Book();
-        book.setAuthor("author");
+        book.setAuthor("Beck, Kent and Andres, Cynthia");
         book.setPublisher("publisher");
         book.setYear("2008");
         book.setTitle("title");
         String result = bibtexnator.booktEntryToBibTex(book);
         System.out.println(result);
-        assertEquals(result, "@book{a08,\n"
-                + "  author = {author},\n"
+        assertEquals(result, "@book{BA08,\n"
+                + "  author = {Beck, Kent and Andres, Cynthia},\n"
                 + "  title = {title},\n"
                 + "  year = {2008},\n"
                 + "  publisher = {publisher},\n"
