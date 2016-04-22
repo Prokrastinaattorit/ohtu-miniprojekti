@@ -105,7 +105,7 @@ public class BibTexGenerator {
     }
 
     private void addPages(StringBuilder sb, String pages) {
-        if (pages != null) {
+        if (pages != null && !pages.isEmpty()) {
             sb.append(tab);
             sb.append("pages = {");
             sb.append(pages);
