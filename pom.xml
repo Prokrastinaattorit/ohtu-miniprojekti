@@ -113,10 +113,16 @@
                 <artifactId>cobertura-maven-plugin</artifactId>
                 <version>2.7</version>
                 <configuration>
-                    <format>xml</format>
-                    <maxmem>256m</maxmem>
-                    <!-- aggregated reports for multi-module projects -->
-                    <aggregate>true</aggregate>
+
+                    <instrumentation>
+                        <ignores>
+                            <ignore>app.profiles.*</ignore>
+                        </ignores>
+                        <excludes>
+                            <exclude>app/profiles/**/*.class</exclude>
+                            <exclude>app/profiles/ProdProfile.class</exclude>
+                        </excludes>
+                    </instrumentation>
                 </configuration>
             </plugin>
 
