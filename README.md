@@ -12,4 +12,6 @@ Sovellus:  https://bibtexinator.herokuapp.com/bibtexinator
 
 Backlog: https://trello.com/b/I76kFLET/ohtuminiproju
 
+Burndown: https://www.burndownfortrello.com/index.php
+
 **HUOMIO!** Travis ei ainakaan toistaiseksi aja easyb-testejä, niiden ajamiseksi suorita NetBeansin kautta UserStoryTester.java -niminen testitiedosto.
