@@ -67,12 +67,18 @@
             <p style="text-align:center;"><a href="#entries">Entries</a> - <a href="#addEntries">Add entries</a> - <a href="#download">Download BibTeX file</a></p>
             <h2 id="entries">Entries</h2>
             <div id="entryList">
+
+
                 <ul th:each="book : ${books}">
-                    <li>Author: <span th:text="${book.author}"></span></li>
-                    <li>Title: <span th:text="${book.title}"></span></li>
-                    <li>Year: <span th:text="${book.year}"></span></li>
-                    <li>Publisher: <span th:text="${book.publisher}"></span></li>
+                    <form action="#" th:action="@{/bibtexinator/editBook/{id}(id=${book.id})}" method="POST">
+                        <li>Author: <input name="author" th:value="${book.author}" type="text"/></li>
+                        <li>Title: <input name="title" th:value="${book.title}" type="text"/></li>
+                        <li>Year: <input name="year" th:value="${book.year}" type="text"/></li>
+                        <li>Publisher: <input name="publisher" th:value="${book.publisher}" type="text"/></li>
+                        <li><button name="editBook" type="submit" class="btn btn-default">Submit</button></li>
+                    </form>
                 </ul>
+
                 <ul th:each="article : ${articles}">
                     <li>Author: <span th:text="${article.author}"></span></li>
                     <li>Title: <span th:text="${article.title}"></span></li>
