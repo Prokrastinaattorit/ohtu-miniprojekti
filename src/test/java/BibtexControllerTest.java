@@ -1,8 +1,10 @@
+
 import app.Application;
 import app.domain.Article;
 import app.domain.Book;
 import app.repositories.ArticleRepository;
 import app.repositories.BookRepository;
+import java.io.File;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,23 +26,23 @@ import org.springframework.web.context.WebApplicationContext;
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
 public class BibtexControllerTest {
-    
+
     @Autowired
     private WebApplicationContext webAppContext;
-    
+
     @Autowired
     private BookRepository bookRepository;
-    
+
     @Autowired
     private ArticleRepository articleRepository;
-    
+
     private MockMvc mockMvc;
-    
+
     @Before
     public void setUp() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(webAppContext).build();
     }
-    
+
     @Test
     public void sivuLatautuu() throws Exception {
         MvcResult res = mockMvc.perform(get("/bibtexinator"))
@@ -49,17 +51,17 @@ public class BibtexControllerTest {
                 .andExpect(status().isOk())
                 .andReturn();
     }
-    
+
     @Test
     public void kirjanLuontiOnnistuu() throws Exception {
         MvcResult res = mockMvc.perform(post("/bibtexinator/saveBook").param("author", "aaaa").param("title", "bbbb").param("year", "cccc").param("publisher", "dddd"))
                 .andExpect(status().is3xxRedirection())
                 .andReturn();
-        
+
         boolean vastaus = false;
-        
+
         if (bookRepository.findAll() != null) {
-            
+
             for (Book book : bookRepository.findAll()) {
                 if (book.getAuthor().equals("aaaa")
                         && book.getTitle().equals("bbbb")
@@ -69,20 +71,20 @@ public class BibtexControllerTest {
                 }
             }
         }
-        
+
         Assert.assertTrue(vastaus);
     }
-    
+
     @Test
     public void artikkelinLuontiOnnistuu() throws Exception {
         MvcResult res = mockMvc.perform(post("/bibtexinator/saveArticle").param("author", "aaaa").param("title", "bbbb").param("year", "cccc").param("journal", "dddd").param("volume", "eeee").param("pages", "ffff"))
                 .andExpect(status().is3xxRedirection())
                 .andReturn();
-        
+
         boolean vastaus = false;
-        
+
         if (articleRepository.findAll() != null) {
-            
+
             for (Article article : articleRepository.findAll()) {
                 if (article.getAuthor().equals("aaaa")
                         && article.getTitle().equals("bbbb")
@@ -94,7 +96,14 @@ public class BibtexControllerTest {
                 }
             }
         }
-        
+
         Assert.assertTrue(vastaus);
+    }
+
+    @Test
+    public void tiedostonLatausOnnistuu() throws Exception {
+        MvcResult res = mockMvc.perform(get("/bibtexinator/download").param("fileName", "bibfile"))
+                .andExpect(status().isOk())
+                .andReturn();
     }
 }
