@@ -80,20 +80,26 @@
                 </ul>
 
                 <ul th:each="article : ${articles}">
-                    <li>Author: <span th:text="${article.author}"></span></li>
-                    <li>Title: <span th:text="${article.title}"></span></li>
-                    <li>Year: <span th:text="${article.year}"></span></li>
-                    <li>Journal: <span th:text="${article.journal}"></span></li>
-                    <li>Volume: <span th:text="${article.volume}"></span></li>
-                    <li>Pages: <span th:text="${article.pages}"></span></li>
+                    <form action="#" th:action="@{/bibtexinator/editArticle/{id}(id=${article.id})}" method="POST">
+                        <li>Author: <input name="article" th:value="${article.author}" type="text"/></li>
+                        <li>Title: <input name="title" th:value="${article.title}" type="text"/></li>
+                        <li>Year: <input name="year" th:value="${article.year}" type="text"/></li>
+                        <li>Journal: <input name="journal" th:value="${article.journal}" type="text"/></li>
+                        <li>Volume: <input name="volume" th:value="${article.volume}" type="text"/></li>
+                        <li>Pages: <input name="pages" th:value="${article.pages}" type="text"/></li>
+                        <li><button name="editArticle" type="submit" class="btn btn-default">Submit</button></li>
+                    </form>
                 </ul>
                 <ul th:each="inproceedings : ${inproceedingss}">
-                    <li>Author: <span th:text="${inproceedings.author}"></span></li>
-                    <li>Title: <span th:text="${inproceedings.title}"></span></li>
-                    <li>Book title: <span th:text="${inproceedings.bookTitle}"></span></li>
-                    <li>Year: <span th:text="${inproceedings.year}"></span></li>
-                    <li>Pages: <span th:text="${inproceedings.pages}"></span></li>
-                    <li>Publisher: <span th:text="${inproceedings.publisher}"></span></li>
+                    <form action="#" th:action="@{/bibtexinator/editInproceedings/{id}(id=${inproceedings.id})}" method="POST">
+                        <li>Author: <input name="author" th:value="${inproceedings.author}" type="text"/></li>
+                        <li>Title: <input name="title" th:value="${inproceedings.title}" type="text"/></li>
+                        <li>Book title: <input name="bookTitle" th:value="${inproceedings.bookTitle}" type="text"/></li>
+                        <li>Year: <input name="year" th:value="${inproceedings.year}" type="text"/></li>
+                        <li>Pages: <input name="pages" th:value="${inproceedings.pages}" type="text"/></li>
+                        <li>Publisher: <input name="publisher" th:value="${inproceedings.publisher}" type="text"/></li>
+                        <li><button name="editInproceedings" type="submit" class="btn btn-default">Submit</button></li>
+                    </form>
                 </ul>
             </div>
             <!--<div class="dropdown">
