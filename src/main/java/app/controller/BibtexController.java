@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -67,6 +68,27 @@ public class BibtexController {
             return "bibtexinator";
         }
         bookRepository.save(book);
+
+        return "redirect:/bibtexinator";
+    }
+    
+    
+    @RequestMapping(method = RequestMethod.POST, value = "/editBook/{id}")
+    public String editBook(@Valid @ModelAttribute Book book, @PathVariable Long id,
+            BindingResult bindingResult) {
+
+        Book oldBook = bookRepository.findOne(id);
+        
+        if (bindingResult.hasErrors()) {
+            return "bibtexinator";
+        }
+        
+        oldBook.setAuthor(book.getAuthor());
+        oldBook.setPublisher(book.getPublisher());
+        oldBook.setTitle(book.getTitle());
+        oldBook.setYear(book.getYear());
+        
+        bookRepository.save(oldBook);
 
         return "redirect:/bibtexinator";
     }
