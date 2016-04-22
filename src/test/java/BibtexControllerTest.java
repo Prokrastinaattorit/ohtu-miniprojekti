@@ -2,8 +2,10 @@
 import app.Application;
 import app.domain.Article;
 import app.domain.Book;
+import app.domain.Inproceedings;
 import app.repositories.ArticleRepository;
 import app.repositories.BookRepository;
+import app.repositories.InproceedingsRepository;
 import java.io.File;
 import org.junit.Assert;
 import org.junit.Before;
@@ -35,6 +37,9 @@ public class BibtexControllerTest {
 
     @Autowired
     private ArticleRepository articleRepository;
+    
+    @Autowired
+    private InproceedingsRepository inproceedingsRepository;
 
     private MockMvc mockMvc;
 
@@ -115,8 +120,8 @@ public class BibtexControllerTest {
         MvcResult res = mockMvc.perform(post("/bibtexinator/saveBook").param("author", "aaaa").param("title", "bbbb").param("year", "cccc").param("publisher", "dddd"))
                 .andExpect(status().is3xxRedirection())
                 .andReturn();
-        
-        res = mockMvc.perform(post("/bibtexinator/editBook/1").param("author", "xxxx").param("title", "yyyy").param("year", "zzzz").param("publisher", "ffff"))
+        Long id = bookRepository.findAll().get(0).getId();
+        res = mockMvc.perform(post("/bibtexinator/editBook/" + id).param("author", "xxxx").param("title", "yyyy").param("year", "zzzz").param("publisher", "ffff"))
                 .andExpect(status().is3xxRedirection())
                 .andReturn();
 
@@ -135,5 +140,104 @@ public class BibtexControllerTest {
         }
 
         Assert.assertTrue(vastaus);
+    }
+    
+    @Test
+    public void artikkelinEditointiOnnistuu() throws Exception {
+        MvcResult res = mockMvc.perform(post("/bibtexinator/saveArticle").param("author", "aaaa").param("title", "bbbb").param("year", "cccc").param("journal", "dddd").param("volume", "eeee").param("pages", "ffff"))
+                .andExpect(status().is3xxRedirection())
+                .andReturn();
+        res = mockMvc.perform(post("/bibtexinator/editArticle/" + articleRepository.findAll().get(0).getId()).param("author", "xxxx").param("title", "zzzz").param("year", "cccc").param("journal", "dddd").param("volume", "eeee").param("pages", "ffff"))
+                .andExpect(status().is3xxRedirection())
+                .andReturn();
+
+        boolean vastaus = false;
+
+        if (articleRepository.findAll() != null) {
+
+            for (Article article : articleRepository.findAll()) {
+                if (article.getAuthor().equals("xxxx")
+                        && article.getTitle().equals("zzzz")
+                        && article.getYear().equals("cccc")
+                        && article.getJournal().equals("dddd")
+                        && article.getVolume().equals("eeee")
+                        && article.getPages().equals("ffff")) {
+                    vastaus = true;
+                }
+            }
+        }
+
+        Assert.assertTrue(vastaus);
+    }
+    
+    
+    @Test
+    public void inproceedingsEditointiOnnistuu() throws Exception {
+        MvcResult res = mockMvc.perform(post("/bibtexinator/saveInproceedings").param("author", "aaaa").param("title", "bbbb").param("bookTitle", "cccc").param("year", "dddd").param("pages", "eeee").param("publisher", "ffff"))
+                .andExpect(status().is3xxRedirection())
+                .andReturn();
+        Long id = inproceedingsRepository.findAll().get(0).getId();
+        res = mockMvc.perform(post("/bibtexinator/editInproceedings/" + id).param("author", "xxxx").param("title", "yyyy").param("bookTitle", "dadada").param("year", "dddd").param("pages", "eeee").param("publisher", "ffff"))
+                .andExpect(status().is3xxRedirection())
+                .andReturn();
+
+        boolean vastaus = false;
+
+        if (inproceedingsRepository.findAll() != null) {
+
+            for (Inproceedings inproceedings : inproceedingsRepository.findAll()) {
+                if (inproceedings.getAuthor().equals("xxxx")
+                        && inproceedings.getTitle().equals("yyyy")
+                        && inproceedings.getBookTitle().equals("dadada")
+                        && inproceedings.getYear().equals("dddd")
+                        && inproceedings.getPages().equals("eeee")
+                        && inproceedings.getPublisher().equals("ffff")) {
+                    vastaus = true;
+                }
+            }
+        }
+
+        Assert.assertTrue(vastaus);
+    }
+    
+    @Test
+    public void deleteBookToimii() throws Exception {
+        
+        MvcResult res = mockMvc.perform(post("/bibtexinator/saveBook").param("author", "aaaa").param("title", "bbbb").param("year", "cccc").param("publisher", "dddd"))
+                .andExpect(status().is3xxRedirection())
+                .andReturn();
+        
+        res = mockMvc.perform(post("/bibtexinator/deleteBook/1"))
+                .andExpect(status().is3xxRedirection())
+                .andReturn();
+
+        
+        Assert.assertTrue(bookRepository.findOne(1l)== null);
+    }
+    
+    @Test
+    public void artikkelinPoistoOnnistuu() throws Exception {
+        MvcResult res = mockMvc.perform(post("/bibtexinator/saveArticle").param("author", "aaaa").param("title", "bbbb").param("year", "cccc").param("journal", "dddd").param("volume", "eeee").param("pages", "ffff"))
+                .andExpect(status().is3xxRedirection())
+                .andReturn();
+        Long id = articleRepository.findAll().get(0).getId();
+        res = mockMvc.perform(post("/bibtexinator/deleteArticle/" + id))
+                .andExpect(status().is3xxRedirection())
+                .andReturn();
+
+        Assert.assertTrue(articleRepository.findOne(id) == null);
+    }
+    
+    @Test
+    public void inproceedingsPoistoOnnistuu() throws Exception {
+        MvcResult res = mockMvc.perform(post("/bibtexinator/saveInproceedings").param("author", "aaaa").param("title", "bbbb").param("bookTitle", "cccc").param("year", "dddd").param("pages", "eeee").param("publisher", "ffff"))
+                .andExpect(status().is3xxRedirection())
+                .andReturn();
+        Long id = inproceedingsRepository.findAll().get(0).getId();
+        res = mockMvc.perform(post("/bibtexinator/deleteInproceedings/" + id))
+                .andExpect(status().is3xxRedirection())
+                .andReturn();
+        
+        Assert.assertTrue(inproceedingsRepository.findOne(id) == null);
     }
 }

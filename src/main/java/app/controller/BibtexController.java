@@ -176,7 +176,7 @@ public class BibtexController {
         return "redirect:/bibtexinator";
     }
     
-    @RequestMapping(method = RequestMethod.POST, value = "/deleteInproceeding/{id}")
+    @RequestMapping(method = RequestMethod.POST, value = "/deleteInproceedings/{id}")
     public String deleteInproceeding(@PathVariable Long id) {
 
         inproceedingsRepository.delete(id);
