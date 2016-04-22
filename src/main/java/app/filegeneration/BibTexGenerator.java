@@ -19,6 +19,7 @@ public class BibTexGenerator {
         addTitle(sb, book);
         addYear(sb, book);
         addPublisher(sb, book.getPublisher());
+        addMonth(sb, null);
         addEnd(sb);
         return replaceFinnishLetters(sb.toString());
     }
@@ -32,6 +33,9 @@ public class BibTexGenerator {
         addJournal(sb, article.getJournal());
         addVolume(sb, article.getVolume());
         addPages(sb, article.getPages());
+        addNumber(sb, null);
+        addMonth(sb, null);
+        addAddress(sb, null);
         addEnd(sb);
         return replaceFinnishLetters(sb.toString());
     }
@@ -45,6 +49,7 @@ public class BibTexGenerator {
         addYear(sb, inpr);
         addPages(sb, inpr.getPages());
         addPublisher(sb, inpr.getPublisher());
+        addMonth(sb, null);
         addEnd(sb);
         return replaceFinnishLetters(sb.toString());
     }
@@ -98,10 +103,12 @@ public class BibTexGenerator {
     }
 
     private void addVolume(StringBuilder sb, String volume) {
-        sb.append(tab);
-        sb.append("volume = {");
-        sb.append(volume);
-        sb.append("},\n");
+        if (volume != null && !volume.isEmpty()) {
+            sb.append(tab);
+            sb.append("volume = {");
+            sb.append(volume);
+            sb.append("},\n");
+        }
     }
 
     private void addPages(StringBuilder sb, String pages) {
@@ -113,6 +120,15 @@ public class BibTexGenerator {
         }
     }
 
+        private void addAddress(StringBuilder sb, String address) {
+        if (address != null && !address.isEmpty()) {
+            sb.append(tab);
+            sb.append("address = {");
+            sb.append(address);
+            sb.append("},\n");
+        }
+    }
+    
     private void addJournal(StringBuilder sb, String journal) {
         sb.append(tab);
         sb.append("journal = {");
@@ -125,6 +141,24 @@ public class BibTexGenerator {
         sb.append("year = {");
         sb.append(entry.getYear());
         sb.append("},\n");
+    }
+
+    private void addMonth(StringBuilder sb, String month) {
+        if (month != null && !month.isEmpty()) {
+            sb.append(tab);
+            sb.append("month = {");
+            sb.append(month);
+            sb.append("},\n");
+        }
+    }
+
+    private void addNumber(StringBuilder sb, String number) {
+        if (number != null && !number.isEmpty()) {
+            sb.append(tab);
+            sb.append("number = {");
+            sb.append(number);
+            sb.append("},\n");
+        }
     }
 
     private void generateStart(StringBuilder sb, String entryName, Entry entry) {
