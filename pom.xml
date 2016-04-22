@@ -105,6 +105,15 @@
                 <version>4.1.0</version>
                 <configuration>
                     <repoToken>1X2tKljd6jApCHFs2WBWrh5xglldF8fMJ</repoToken>
+                    <instrumentation>
+                        <ignores>
+                            <ignore>app.profiles.*</ignore>
+                        </ignores>
+                        <excludes>
+                            <exclude>app/profiles/**/*.class</exclude>
+                            <exclude>app/profiles/ProdProfile.class</exclude>
+                        </excludes>
+                    </instrumentation>
                 </configuration>
             </plugin>
 
