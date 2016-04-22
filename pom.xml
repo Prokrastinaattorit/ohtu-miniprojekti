@@ -116,6 +116,15 @@
                   <format>xml</format>
                   <maxmem>256m</maxmem>
                 </configuration>
+                <instrumentation>
+                    <ignores>
+                        <ignore>app.profiles.*</ignore>
+                    </ignores>
+                    <excludes>
+                        <exclude>app/profiles/**/*.class</exclude>
+                        <exclude>app/profiles/ProdProfile.class</exclude>
+                    </excludes>
+                </instrumentation>
             </plugin>
 
             <plugin>
