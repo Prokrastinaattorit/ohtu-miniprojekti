@@ -71,24 +71,67 @@ public class BibtexController {
 
         return "redirect:/bibtexinator";
     }
-    
-    
+
     @RequestMapping(method = RequestMethod.POST, value = "/editBook/{id}")
     public String editBook(@Valid @ModelAttribute Book book, @PathVariable Long id,
             BindingResult bindingResult) {
 
         Book oldBook = bookRepository.findOne(id);
-        
+
         if (bindingResult.hasErrors()) {
             return "bibtexinator";
         }
-        
+
         oldBook.setAuthor(book.getAuthor());
         oldBook.setPublisher(book.getPublisher());
         oldBook.setTitle(book.getTitle());
         oldBook.setYear(book.getYear());
-        
+
         bookRepository.save(oldBook);
+
+        return "redirect:/bibtexinator";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/editArticle/{id}")
+    public String editArticle(@Valid @ModelAttribute Article article, @PathVariable Long id,
+            BindingResult bindingResult) {
+
+        Article oldArticle = articleRepository.findOne(id);
+
+        if (bindingResult.hasErrors()) {
+            return "bibtexinator";
+        }
+
+        oldArticle.setAuthor(article.getAuthor());
+        oldArticle.setJournal(article.getJournal());
+        oldArticle.setTitle(article.getTitle());
+        oldArticle.setPages(article.getPages());
+        oldArticle.setVolume(article.getVolume());
+        oldArticle.setYear(article.getYear());
+
+        articleRepository.save(oldArticle);
+
+        return "redirect:/bibtexinator";
+    }
+    
+        @RequestMapping(method = RequestMethod.POST, value = "/editInproceedings/{id}")
+    public String editInproceedings(@Valid @ModelAttribute Inproceedings inproceedings, @PathVariable Long id,
+            BindingResult bindingResult) {
+
+        Inproceedings oldInproceedings = inproceedingsRepository.findOne(id);
+
+        if (bindingResult.hasErrors()) {
+            return "bibtexinator";
+        }
+
+        oldInproceedings.setAuthor(inproceedings.getAuthor());
+        oldInproceedings.setTitle(inproceedings.getTitle());
+        oldInproceedings.setBookTitle(inproceedings.getBookTitle());
+        oldInproceedings.setPages(inproceedings.getPages());
+        oldInproceedings.setPublisher(inproceedings.getPublisher());
+        oldInproceedings.setYear(inproceedings.getYear());
+
+        inproceedingsRepository.save(oldInproceedings);
 
         return "redirect:/bibtexinator";
     }

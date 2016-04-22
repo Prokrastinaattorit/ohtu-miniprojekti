@@ -8,8 +8,11 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 public class Book extends AbstractPersistable<Long> implements Entry {
     @NotBlank
     private String author;
+    @NotBlank
     private String title;
+    @NotBlank
     private String year;
+    @NotBlank
     private String publisher;
 
     @Override

@@ -8,11 +8,18 @@ import org.hibernate.validator.constraints.NotBlank;
 public class Article extends AbstractPersistable<Long> implements Entry {
     @NotBlank
     private String author;
+    @NotBlank
     private String title;
+    @NotBlank
     private String year;
+    private String month;
+    private String number;
+    @NotBlank
     private String journal;
     private String volume;
     private String pages;
+    private String publisher;
+    private String address;
 
     @Override
     public String getAuthor() {

@@ -9,8 +9,13 @@ public class Inproceedings extends AbstractPersistable<Long> implements Entry {
 
     @NotBlank
     private String author;
+    @NotBlank
     private String title;
+    @NotBlank
     private String bookTitle;
+    private String organization;
+    private String month;
+    @NotBlank
     private String year;
     private String pages;
     private String publisher;
