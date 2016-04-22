@@ -113,6 +113,28 @@ public class BibtexController {
 
         return "redirect:/bibtexinator";
     }
+    
+        @RequestMapping(method = RequestMethod.POST, value = "/editInproceedings/{id}")
+    public String editInproceedings(@Valid @ModelAttribute Inproceedings inproceedings, @PathVariable Long id,
+            BindingResult bindingResult) {
+
+        Inproceedings oldInproceedings = inproceedingsRepository.findOne(id);
+
+        if (bindingResult.hasErrors()) {
+            return "bibtexinator";
+        }
+
+        oldInproceedings.setAuthor(inproceedings.getAuthor());
+        oldInproceedings.setTitle(inproceedings.getTitle());
+        oldInproceedings.setBookTitle(inproceedings.getBookTitle());
+        oldInproceedings.setPages(inproceedings.getPages());
+        oldInproceedings.setPublisher(inproceedings.getPublisher());
+        oldInproceedings.setYear(inproceedings.getYear());
+
+        inproceedingsRepository.save(oldInproceedings);
+
+        return "redirect:/bibtexinator";
+    }
 
     @RequestMapping(method = RequestMethod.POST, value = "/saveArticle")
     public String saveArticle(@Valid @ModelAttribute Article article,
