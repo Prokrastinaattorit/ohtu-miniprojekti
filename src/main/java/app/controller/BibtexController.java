@@ -116,4 +116,30 @@ public class BibtexController {
 
         return "redirect:/bibtexinator";
     }
+    
+    @RequestMapping(method = RequestMethod.POST, value = "/deleteBook/{id}")
+    public String deleteBook(@PathVariable Long id) {
+
+        bookRepository.delete(id);
+
+        return "redirect:/bibtexinator";
+    }
+    
+    @RequestMapping(method = RequestMethod.POST, value = "/deleteArticle/{id}")
+    public String deleteArticle(@PathVariable Long id) {
+
+        articleRepository.delete(id);
+
+        return "redirect:/bibtexinator";
+    }
+    
+    @RequestMapping(method = RequestMethod.POST, value = "/deleteInproceeding/{id}")
+    public String deleteInproceeding(@PathVariable Long id) {
+
+        inproceedingsRepository.delete(id);
+
+        return "redirect:/bibtexinator";
+    }
+    
+    
 }
