@@ -49,7 +49,7 @@ public class FileDownloadController {
     
     @RequestMapping(method = RequestMethod.GET)
     public void doDownload(HttpServletRequest request, HttpServletResponse response,
-            @RequestParam(required = false, defaultValue = "generated") String fileName) throws IOException {
+            @RequestParam(required = false, defaultValue = "sigproc") String fileName) throws IOException {
         
         
         // get absolute path of the application
