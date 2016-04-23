@@ -71,34 +71,43 @@
 
                 <ul th:each="book : ${books}">
                     <form action="#" th:action="@{/bibtexinator/editBook/{id}(id=${book.id})}" method="POST">
-                        <li>Author: <input name="author" th:value="${book.author}" type="text"/></li>
-                        <li>Title: <input name="title" th:value="${book.title}" type="text"/></li>
-                        <li>Year: <input name="year" th:value="${book.year}" type="text"/></li>
-                        <li>Publisher: <input name="publisher" th:value="${book.publisher}" type="text"/></li>
-                        <li><button name="editBook" type="submit" class="btn btn-default">Submit</button></li>
+                        <li>Author: <input name="author" th:value="${book.author}" type="text" required="required"/></li>
+                        <li>Title: <input name="title" th:value="${book.title}" type="text" required="required"/></li>
+                        <li>Year: <input name="year" th:value="${book.year}" type="text" required="required"/></li>
+                        <li>Publisher: <input name="publisher" th:value="${book.publisher}" type="text" required="required"/></li>
+                        <li>
+                            <button name="action" type="submit" value="edit" class="btn btn-default">Save edits</button>
+                            <button name="action" type="submit" value="delete" class="btn btn-danger">Delete</button>
+                        </li>
                     </form>
                 </ul>
 
                 <ul th:each="article : ${articles}">
                     <form action="#" th:action="@{/bibtexinator/editArticle/{id}(id=${article.id})}" method="POST">
-                        <li>Author: <input name="article" th:value="${article.author}" type="text"/></li>
-                        <li>Title: <input name="title" th:value="${article.title}" type="text"/></li>
-                        <li>Year: <input name="year" th:value="${article.year}" type="text"/></li>
-                        <li>Journal: <input name="journal" th:value="${article.journal}" type="text"/></li>
+                        <li>Author: <input name="author" th:value="${article.author}" type="text" required="required"/></li>
+                        <li>Title: <input name="title" th:value="${article.title}" type="text" required="required"/></li>
+                        <li>Year: <input name="year" th:value="${article.year}" type="text" required="required"/></li>
+                        <li>Journal: <input name="journal" th:value="${article.journal}" type="text" required="required"/></li>
                         <li>Volume: <input name="volume" th:value="${article.volume}" type="text"/></li>
                         <li>Pages: <input name="pages" th:value="${article.pages}" type="text"/></li>
-                        <li><button name="editArticle" type="submit" class="btn btn-default">Submit</button></li>
+                        <li>
+                            <button name="action" type="submit" value="edit" class="btn btn-default">Save edits</button>
+                            <button name="action" type="submit" value="delete" class="btn btn-danger">Delete</button>
+                        </li>
                     </form>
                 </ul>
                 <ul th:each="inproceedings : ${inproceedingss}">
                     <form action="#" th:action="@{/bibtexinator/editInproceedings/{id}(id=${inproceedings.id})}" method="POST">
-                        <li>Author: <input name="author" th:value="${inproceedings.author}" type="text"/></li>
-                        <li>Title: <input name="title" th:value="${inproceedings.title}" type="text"/></li>
-                        <li>Book title: <input name="bookTitle" th:value="${inproceedings.bookTitle}" type="text"/></li>
-                        <li>Year: <input name="year" th:value="${inproceedings.year}" type="text"/></li>
+                        <li>Author: <input name="author" th:value="${inproceedings.author}" type="text" required="required"/></li>
+                        <li>Title: <input name="title" th:value="${inproceedings.title}" type="text" required="required"/></li>
+                        <li>Book title: <input name="bookTitle" th:value="${inproceedings.bookTitle}" type="text" required="required"/></li>
+                        <li>Year: <input name="year" th:value="${inproceedings.year}" type="text" required="required"/></li>
                         <li>Pages: <input name="pages" th:value="${inproceedings.pages}" type="text"/></li>
                         <li>Publisher: <input name="publisher" th:value="${inproceedings.publisher}" type="text"/></li>
-                        <li><button name="editInproceedings" type="submit" class="btn btn-default">Submit</button></li>
+                        <li>
+                            <button name="action" type="submit" value="edit" class="btn btn-default">Save edits</button>
+                            <button name="action" type="submit" value="delete" class="btn btn-danger">Delete</button>
+                        </li>
                     </form>
                 </ul>
             </div>

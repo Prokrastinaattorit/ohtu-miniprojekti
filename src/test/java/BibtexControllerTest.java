@@ -121,7 +121,7 @@ public class BibtexControllerTest {
                 .andExpect(status().is3xxRedirection())
                 .andReturn();
         Long id = bookRepository.findAll().get(0).getId();
-        res = mockMvc.perform(post("/bibtexinator/editBook/" + id).param("author", "xxxx").param("title", "yyyy").param("year", "zzzz").param("publisher", "ffff"))
+        res = mockMvc.perform(post("/bibtexinator/editBook/" + id).param("action", "edit").param("author", "xxxx").param("title", "yyyy").param("year", "zzzz").param("publisher", "ffff"))
                 .andExpect(status().is3xxRedirection())
                 .andReturn();
 
@@ -148,7 +148,7 @@ public class BibtexControllerTest {
                 .andExpect(status().is3xxRedirection())
                 .andReturn();
         Long id = articleRepository.findAll().get(0).getId();
-        res = mockMvc.perform(post("/bibtexinator/editArticle/" + id).param("author", "xxxx").param("title", "zzzz").param("year", "cccc").param("journal", "dddd").param("volume", "eeee").param("pages", "ffff"))
+        res = mockMvc.perform(post("/bibtexinator/editArticle/" + id).param("action", "edit").param("author", "xxxx").param("title", "zzzz").param("year", "cccc").param("journal", "dddd").param("volume", "eeee").param("pages", "ffff"))
                 .andExpect(status().is3xxRedirection())
                 .andReturn();
 
@@ -178,7 +178,7 @@ public class BibtexControllerTest {
                 .andExpect(status().is3xxRedirection())
                 .andReturn();
         Long id = inproceedingsRepository.findAll().get(0).getId();
-        res = mockMvc.perform(post("/bibtexinator/editInproceedings/" + id).param("author", "xxxx").param("title", "yyyy").param("bookTitle", "dadada").param("year", "dddd").param("pages", "eeee").param("publisher", "ffff"))
+        res = mockMvc.perform(post("/bibtexinator/editInproceedings/" + id).param("action", "edit").param("author", "xxxx").param("title", "yyyy").param("bookTitle", "dadada").param("year", "dddd").param("pages", "eeee").param("publisher", "ffff"))
                 .andExpect(status().is3xxRedirection())
                 .andReturn();
 
@@ -208,7 +208,7 @@ public class BibtexControllerTest {
                 .andExpect(status().is3xxRedirection())
                 .andReturn();
         Long id = bookRepository.findAll().get(0).getId();
-        res = mockMvc.perform(post("/bibtexinator/deleteBook/" + id))
+        res = mockMvc.perform(post("/bibtexinator/editBook/" + id).param("action", "delete"))
                 .andExpect(status().is3xxRedirection())
                 .andReturn();
 
@@ -222,7 +222,7 @@ public class BibtexControllerTest {
                 .andExpect(status().is3xxRedirection())
                 .andReturn();
         Long id = articleRepository.findAll().get(0).getId();
-        res = mockMvc.perform(post("/bibtexinator/deleteArticle/" + id))
+        res = mockMvc.perform(post("/bibtexinator/editArticle/" + id).param("action", "delete"))
                 .andExpect(status().is3xxRedirection())
                 .andReturn();
 
@@ -235,7 +235,7 @@ public class BibtexControllerTest {
                 .andExpect(status().is3xxRedirection())
                 .andReturn();
         Long id = inproceedingsRepository.findAll().get(0).getId();
-        res = mockMvc.perform(post("/bibtexinator/deleteInproceedings/" + id))
+        res = mockMvc.perform(post("/bibtexinator/editInproceedings/" + id).param("action", "delete"))
                 .andExpect(status().is3xxRedirection())
                 .andReturn();
         

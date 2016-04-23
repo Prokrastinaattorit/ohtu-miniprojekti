@@ -72,7 +72,7 @@ public class BibtexController {
         return "redirect:/bibtexinator";
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/editBook/{id}")
+    @RequestMapping(method = RequestMethod.POST, value = "/editBook/{id}", params = "action=edit")
     public String editBook(@Valid @ModelAttribute Book book, @PathVariable Long id,
             BindingResult bindingResult) {
 
@@ -92,7 +92,7 @@ public class BibtexController {
         return "redirect:/bibtexinator";
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/editArticle/{id}")
+    @RequestMapping(method = RequestMethod.POST, value = "/editArticle/{id}", params = "action=edit")
     public String editArticle(@Valid @ModelAttribute Article article, @PathVariable Long id,
             BindingResult bindingResult) {
 
@@ -113,8 +113,8 @@ public class BibtexController {
 
         return "redirect:/bibtexinator";
     }
-    
-        @RequestMapping(method = RequestMethod.POST, value = "/editInproceedings/{id}")
+
+    @RequestMapping(method = RequestMethod.POST, value = "/editInproceedings/{id}", params = "action=edit")
     public String editInproceedings(@Valid @ModelAttribute Inproceedings inproceedings, @PathVariable Long id,
             BindingResult bindingResult) {
 
@@ -159,30 +159,29 @@ public class BibtexController {
 
         return "redirect:/bibtexinator";
     }
-    
-    @RequestMapping(method = RequestMethod.POST, value = "/deleteBook/{id}")
+
+    @RequestMapping(method = RequestMethod.POST, value = "/editBook/{id}", params = "action=delete")
     public String deleteBook(@PathVariable Long id) {
 
         bookRepository.delete(id);
 
         return "redirect:/bibtexinator";
     }
-    
-    @RequestMapping(method = RequestMethod.POST, value = "/deleteArticle/{id}")
+
+    @RequestMapping(method = RequestMethod.POST, value = "/editArticle/{id}", params = "action=delete")
     public String deleteArticle(@PathVariable Long id) {
 
         articleRepository.delete(id);
 
         return "redirect:/bibtexinator";
     }
-    
-    @RequestMapping(method = RequestMethod.POST, value = "/deleteInproceedings/{id}")
+
+    @RequestMapping(method = RequestMethod.POST, value = "/editInproceedings/{id}", params = "action=delete")
     public String deleteInproceeding(@PathVariable Long id) {
 
         inproceedingsRepository.delete(id);
 
         return "redirect:/bibtexinator";
     }
-    
-    
+
 }
