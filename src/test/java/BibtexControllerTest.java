@@ -147,7 +147,8 @@ public class BibtexControllerTest {
         MvcResult res = mockMvc.perform(post("/bibtexinator/saveArticle").param("author", "aaaa").param("title", "bbbb").param("year", "cccc").param("journal", "dddd").param("volume", "eeee").param("pages", "ffff"))
                 .andExpect(status().is3xxRedirection())
                 .andReturn();
-        res = mockMvc.perform(post("/bibtexinator/editArticle/" + articleRepository.findAll().get(0).getId()).param("author", "xxxx").param("title", "zzzz").param("year", "cccc").param("journal", "dddd").param("volume", "eeee").param("pages", "ffff"))
+        Long id = articleRepository.findAll().get(0).getId();
+        res = mockMvc.perform(post("/bibtexinator/editArticle/" + id).param("author", "xxxx").param("title", "zzzz").param("year", "cccc").param("journal", "dddd").param("volume", "eeee").param("pages", "ffff"))
                 .andExpect(status().is3xxRedirection())
                 .andReturn();
 
@@ -206,13 +207,13 @@ public class BibtexControllerTest {
         MvcResult res = mockMvc.perform(post("/bibtexinator/saveBook").param("author", "aaaa").param("title", "bbbb").param("year", "cccc").param("publisher", "dddd"))
                 .andExpect(status().is3xxRedirection())
                 .andReturn();
-        
-        res = mockMvc.perform(post("/bibtexinator/deleteBook/1"))
+        Long id = bookRepository.findAll().get(0).getId();
+        res = mockMvc.perform(post("/bibtexinator/deleteBook/" + id))
                 .andExpect(status().is3xxRedirection())
                 .andReturn();
 
         
-        Assert.assertTrue(bookRepository.findOne(1l)== null);
+        Assert.assertTrue(bookRepository.findOne(id)== null);
     }
     
     @Test
