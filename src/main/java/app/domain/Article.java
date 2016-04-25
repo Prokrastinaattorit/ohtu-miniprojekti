@@ -6,20 +6,19 @@ import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 public class Article extends AbstractPersistable<Long> implements Entry {
+
     @NotBlank
     private String author;
     @NotBlank
     private String title;
     @NotBlank
+    private String journal;
+    @NotBlank
     private String year;
     private String month;
     private String number;
-    @NotBlank
-    private String journal;
     private String volume;
     private String pages;
-    private String publisher;
-    private String address;
 
     @Override
     public String getAuthor() {
@@ -65,6 +64,14 @@ public class Article extends AbstractPersistable<Long> implements Entry {
         this.pages = pages;
     }
 
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
     @Override
     public String getYear() {
         return year;
@@ -74,4 +81,14 @@ public class Article extends AbstractPersistable<Long> implements Entry {
     public void setYear(String year) {
         this.year = year;
     }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
+    }
+    
+    
 }

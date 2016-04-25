@@ -13,10 +13,11 @@ public class Inproceedings extends AbstractPersistable<Long> implements Entry {
     private String title;
     @NotBlank
     private String bookTitle;
-    private String organization;
-    private String month;
     @NotBlank
     private String year;
+    private String organization;
+    private String address;
+    private String month;
     private String pages;
     private String publisher;
 
@@ -73,4 +74,29 @@ public class Inproceedings extends AbstractPersistable<Long> implements Entry {
     public void setPublisher(String publisher) {
         this.publisher = publisher;
     }
+
+    public void setMonth(String month) {
+        this.month = month;
+    }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setOrganization(String organization) {
+        this.organization = organization;
+    }
+
+    public String getOrganization() {
+        return organization;
+    }
+    
 }

@@ -35,6 +35,7 @@
             li input {
                 border: 0px;
                 background: none;
+                border-bottom: 1px dotted;
             }
         </style>
     </head>
@@ -46,9 +47,9 @@
             <div id="entryList">
                 <ul th:each="book : ${books}">
                     <form action="#" th:action="@{/bibtexinator/editBook/{id}(id=${book.id})}" method="POST" class="entryContent">
-                        <li>Author: <input name="author" th:value="${book.author}" type="text" required="required"/></li>
-                        <li>Title: <input name="title" th:value="${book.title}" type="text" required="required"/></li>
-                        <li>Year: <input name="year" th:value="${book.year}" type="text" required="required"/></li>
+                        <li>Author:    <input name="author" th:value="${book.author}" type="text" required="required"/></li>
+                        <li>Title:     <input name="title" th:value="${book.title}" type="text" required="required"/></li>
+                        <li>Year:      <input name="year" th:value="${book.year}" type="text" required="required"/></li>
                         <li>Publisher: <input name="publisher" th:value="${book.publisher}" type="text" required="required"/></li>
                         <li class="entryButtons">
                             <button name="action" type="submit" value="edit" class="btn btn-default btn-xs editButton">Save edits</button>
@@ -64,6 +65,8 @@
                         <li>Year: <input name="year" th:value="${article.year}" type="text" required="required"/></li>
                         <li>Journal: <input name="journal" th:value="${article.journal}" type="text" required="required"/></li>
                         <li>Volume: <input name="volume" th:value="${article.volume}" type="text"/></li>
+                        <li>Number: <input name="number" th:value="${article.number}" type="text"/></li>
+                        <li>Month: <input name="month" th:value="${article.month}" type="text"/></li>
                         <li>Pages: <input name="pages" th:value="${article.pages}" type="text"/></li>
                         <li>
                             <button name="action" type="submit" value="edit" class="btn btn-default">Save edits</button>
@@ -78,7 +81,10 @@
                         <li>Book title: <input name="bookTitle" th:value="${inproceedings.bookTitle}" type="text" required="required"/></li>
                         <li>Year: <input name="year" th:value="${inproceedings.year}" type="text" required="required"/></li>
                         <li>Pages: <input name="pages" th:value="${inproceedings.pages}" type="text"/></li>
+                        <li>Organization: <input name="organization" th:value="${inproceedings.organization}" type="text"/></li>
                         <li>Publisher: <input name="publisher" th:value="${inproceedings.publisher}" type="text"/></li>
+                        <li>Address: <input name="address" th:value="${inproceedings.address}" type="text"/></li>
+                        <li>Month: <input name="month" th:value="${inproceedings.month}" type="text"/></li>
                         <li>
                             <button name="action" type="submit" value="edit" class="btn btn-default">Save edits</button>
                             <button name="action" type="submit" value="delete" class="btn btn-danger">Delete</button>
@@ -142,6 +148,14 @@
                         <td><input name="volume" id="articleVolume" type="text" th:field="*{volume}" /></td>
                     </tr>
                     <tr>
+                        <td>Number: </td>
+                        <td><input name="number" id="articleNumber" type="text" th:field="*{number}" /></td>
+                    </tr>
+                    <tr>
+                        <td>Month: </td>
+                        <td><input name="month" id="articleMonth" type="text" th:field="*{month}" /></td>
+                    </tr>
+                    <tr>
                         <td>Pages: </td>
                         <td><input name="pages" id="articlePages" type="text" th:field="*{pages}" /></td>
                     </tr>
@@ -174,8 +188,20 @@
                         <td><input name="pages" id="inPages" type="text" th:field="*{pages}" /></td>
                     </tr>
                     <tr>
+                        <td>Organization: </td>
+                        <td><input name="organization" id="inOrganization" type="text" th:field="*{organization}" /></td>
+                    </tr>
+                    <tr>
                         <td>Publisher: </td>
                         <td><input name="publisher" id="inPublisher" type="text" th:field="*{publisher}" /></td>
+                    </tr>
+                    <tr>
+                        <td>Address: </td>
+                        <td><input name="address" id="inAddress" type="text" th:field="*{address}" /></td>
+                    </tr>
+                    <tr>
+                        <td>Month: </td>
+                        <td><input name="month" id="inMonth" type="text" th:field="*{month}" /></td>
                     </tr>
                     <tr>
                         <td><button name="addInproceedings" type="submit" class="btn btn-default">Submit</button></td>
