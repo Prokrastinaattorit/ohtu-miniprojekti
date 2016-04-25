@@ -10,36 +10,6 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <!-- link rel="stylesheet" th:href="@{/css/style.css}" /-->
         <style>
-            .dropbtn {
-                background-color: #4CAF50;
-                color: white;
-                padding: 16px;
-                font-size: 16px;
-                border: none;
-                cursor: pointer;
-            }
-            .dropbtn:hover, .dropbtn:focus {
-                background-color: #3e8e41;
-            }
-            .dropdown {
-                position: relative;
-                display: inline-block;
-            }
-            .dropdown-content {
-                display: none;
-                position: absolute;
-                background-color: #f9f9f9;
-                min-width: 160px;
-                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            }
-            .dropdown-content a {
-                color: black;
-                padding: 12px 16px;
-                text-decoration: none;
-                display: block;
-            }
-            .dropdown-content a:hover {background-color: #f1f1f1}
-            .show {display:block;}
             h1 {
                 text-align: center;
             }
@@ -59,6 +29,12 @@
                 padding: 2rem;
                 font-family: monospace;
             }
+            li.entryButtons {
+                list-style: none;
+            }
+            li input {
+                
+            }
         </style>
     </head>
     <body>
@@ -67,17 +43,15 @@
             <p style="text-align:center;"><a href="#entries">Entries</a> - <a href="#addEntries">Add entries</a> - <a href="#download">Download BibTeX file</a></p>
             <h2 id="entries">Entries</h2>
             <div id="entryList">
-
-
                 <ul th:each="book : ${books}">
-                    <form action="#" th:action="@{/bibtexinator/editBook/{id}(id=${book.id})}" method="POST">
+                    <form action="#" th:action="@{/bibtexinator/editBook/{id}(id=${book.id})}" method="POST" class="entryContent">
                         <li>Author: <input name="author" th:value="${book.author}" type="text" required="required"/></li>
                         <li>Title: <input name="title" th:value="${book.title}" type="text" required="required"/></li>
                         <li>Year: <input name="year" th:value="${book.year}" type="text" required="required"/></li>
                         <li>Publisher: <input name="publisher" th:value="${book.publisher}" type="text" required="required"/></li>
-                        <li>
-                            <button name="action" type="submit" value="edit" class="btn btn-default">Save edits</button>
-                            <button name="action" type="submit" value="delete" class="btn btn-danger">Delete</button>
+                        <li class="entryButtons">
+                            <button name="action" class="editButton" type="submit" value="edit" class="btn btn-default btn-xs">Save edits</button>
+                            <button name="action" class="deleteButton" type="submit" value="delete" class="btn btn-danger btn-xs">Delete</button>
                         </li>
                     </form>
                 </ul>
