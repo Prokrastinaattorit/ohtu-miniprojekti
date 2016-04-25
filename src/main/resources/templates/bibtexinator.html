@@ -33,7 +33,8 @@
                 list-style: none;
             }
             li input {
-                
+                border: 0px;
+                background: none;
             }
         </style>
     </head>
@@ -50,8 +51,8 @@
                         <li>Year: <input name="year" th:value="${book.year}" type="text" required="required"/></li>
                         <li>Publisher: <input name="publisher" th:value="${book.publisher}" type="text" required="required"/></li>
                         <li class="entryButtons">
-                            <button name="action" class="editButton" type="submit" value="edit" class="btn btn-default btn-xs">Save edits</button>
-                            <button name="action" class="deleteButton" type="submit" value="delete" class="btn btn-danger btn-xs">Delete</button>
+                            <button name="action" type="submit" value="edit" class="btn btn-default btn-xs editButton">Save edits</button>
+                            <button name="action" type="submit" value="delete" class="btn btn-danger btn-xs deleteButton">Delete</button>
                         </li>
                     </form>
                 </ul>
