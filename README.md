@@ -14,4 +14,12 @@ Backlog: https://trello.com/b/I76kFLET/ohtuminiproju
 
 Burndown: https://www.burndownfortrello.com/index.php
 
-**HUOMIO!** Travis ei ainakaan toistaiseksi aja easyb-testejä, niiden ajamiseksi suorita NetBeansin kautta UserStoryTester.java -niminen testitiedosto.
+**HUOMIO!** Travis ei ainakaan toistaiseksi aja easyb-testejä, niiden ajamiseksi suorita:
+```
+mvn exec:java
+```
+Ja toisella komentorivillä (ohjelman käynnistyttyä):
+```
+mvn integration-test
+```
+Tämä ajaa sekä tavalliset testit että easyb-testit. Suorituksen lopussa kerrotaan "scenarios run" ja "total behaviors ran".
