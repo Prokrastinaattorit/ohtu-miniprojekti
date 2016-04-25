@@ -94,7 +94,7 @@ public class BibTexGeneratorTest {
         System.out.println(result);
         assertEquals(result, "@book{K18,\n"
                 + "  author = {Kirja Kirjailija},\n"
-                + "  title = {\"{A}\"{a}kk\"{o}set},\n"
+                + "  title = {\\\"{A}\\\"{a}kk\\\"{o}set},\n"
                 + "  year = {2018},\n"
                 + "  publisher = {publisher},\n"
                 + "}\n");
