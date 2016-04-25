@@ -65,7 +65,7 @@ public class BibtexController {
             BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            return "bibtexinator";
+            return "redirect:/bibtexinator";
         }
         bookRepository.save(book);
 
@@ -79,7 +79,7 @@ public class BibtexController {
         Book oldBook = bookRepository.findOne(id);
 
         if (bindingResult.hasErrors()) {
-            return "bibtexinator";
+            return "redirect:/bibtexinator";
         }
 
         oldBook.setAuthor(book.getAuthor());
@@ -99,7 +99,7 @@ public class BibtexController {
         Article oldArticle = articleRepository.findOne(id);
 
         if (bindingResult.hasErrors()) {
-            return "bibtexinator";
+            return "redirect:/bibtexinator";
         }
 
         oldArticle.setAuthor(article.getAuthor());
@@ -123,7 +123,7 @@ public class BibtexController {
         Inproceedings oldInproceedings = inproceedingsRepository.findOne(id);
 
         if (bindingResult.hasErrors()) {
-            return "bibtexinator";
+            return "redirect:/bibtexinator";
         }
 
         oldInproceedings.setAuthor(inproceedings.getAuthor());
@@ -143,7 +143,7 @@ public class BibtexController {
             BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            return "bibtexinator";
+            return "redirect:/bibtexinator";
         }
         articleRepository.save(article);
 
@@ -155,7 +155,7 @@ public class BibtexController {
             BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            return "bibtexinator";
+            return "redirect:/bibtexinator";
         }
         inproceedingsRepository.save(inproceedings);
 
