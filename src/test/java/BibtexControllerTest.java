@@ -52,7 +52,7 @@ public class BibtexControllerTest {
     public void sivuLatautuu() throws Exception {
         MvcResult res = mockMvc.perform(get("/bibtexinator"))
                 .andExpect(model().attributeExists("books"))
-                .andExpect(model().attributeExists("articles"))
+                .andExpect(model().attributeExists("article"))
                 .andExpect(status().isOk())
                 .andReturn();
     }
