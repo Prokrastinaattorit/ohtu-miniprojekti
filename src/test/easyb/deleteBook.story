@@ -3,13 +3,13 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 description 'User can add a Book entry'
 
-scenario "User can add a valid book entry", {
+scenario "User can delete book entry", {
     given 'on frontpage', {
         driver = new HtmlUnitDriver();
         driver.get("http://localhost:8080/bibtexinator");
     }
 
-    when 'user fills the @book form and submits', {
+    when 'user fills the @book form and submits, then deletes', {
         element = driver.findElement(By.id("bookAuthor"));
         element.sendKeys("Sofi Oksanen");
         element = driver.findElement(By.id("bookTitle"));
@@ -21,10 +21,10 @@ scenario "User can add a valid book entry", {
         element = driver.findElement(By.name("addBook"));
         element.submit();
 
-        element = driver.findElement(By.className("deleteButton"));'
+        element = driver.findElement(By.className("deleteButton"));
     }
  
-    then 'new book is created', {
+    then 'book is deleted', {
         driver.getPageSource().contains("Sofi Oksanen").shouldBe false
     }
 }

@@ -3,13 +3,13 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 description 'User can add an Inproceedings entry'
 
-scenario "User can add a valid inproceedings entry", {
+scenario "User can delete inproceedings entry", {
     given 'on frontpage', {
         driver = new HtmlUnitDriver();
         driver.get("http://localhost:8080/bibtexinator");
     }
 
-    when 'user fills the @inproceedings form and submits', {
+    when 'user fills the @inproceedings form and submits, then deletes', {
         element = driver.findElement(By.id("inAuthor"));
         element.sendKeys("Author B");
         element = driver.findElement(By.id("inTitle"));
@@ -28,7 +28,7 @@ scenario "User can add a valid inproceedings entry", {
         element = driver.findElement(By.className("deleteButton"));
     }
  
-    then 'new book is created', {
+    then 'inproceedings is deleted', {
         driver.getPageSource().contains("Author B").shouldBe false
     }
 }

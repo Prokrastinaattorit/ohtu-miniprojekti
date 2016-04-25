@@ -9,7 +9,7 @@ scenario "User can delete article entry", {
         driver.get("http://localhost:8080/bibtexinator");
     }
 
-    when 'user fills the @article form and submits', {
+    when 'user fills the @article form and submits, then deletes', {
         element = driver.findElement(By.id("articleAuthor"));
         element.sendKeys("Author A");
         element = driver.findElement(By.id("articleTitle"));
@@ -28,7 +28,7 @@ scenario "User can delete article entry", {
         element = driver.findElement(By.className("deleteButton"));
     }
  
-    then 'new book is created', {
+    then 'article is deleted', {
         driver.getPageSource().contains("Author A").shouldBe false
     }
 }
