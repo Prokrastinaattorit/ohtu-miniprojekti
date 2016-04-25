@@ -21,7 +21,8 @@
             }
             #wrapper {
                 padding-left: 2rem;
-                width: 800px;
+                padding-right: 2rem;
+                max-width: 800px;
                 margin: 0 auto;
             }
             #entryList {
@@ -47,10 +48,10 @@
             <div id="entryList">
                 <ul th:each="book : ${books}">
                     <form action="#" th:action="@{/bibtexinator/editBook/{id}(id=${book.id})}" method="POST" class="entryContent">
-                        <li>Author:&nbsp;&nbsp;&nbsp;&nbsp;<input name="author" th:value="${book.author}" type="text" required="required"/></li>
-                        <li>Title:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="title" th:value="${book.title}" type="text" required="required"/></li>
-                        <li>Year:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="year" th:value="${book.year}" type="text" required="required"/></li>
-                        <li>Publisher:&nbsp;<input name="publisher" th:value="${book.publisher}" type="text" required="required"/></li>
+                        <li>Author:&nbsp;&nbsp;&nbsp;&nbsp;<input name="author" class="bookAuthorField" th:value="${book.author}" type="text" required="required"/></li>
+                        <li>Title:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="title" class="bookTitleField" th:value="${book.title}" type="text" required="required"/></li>
+                        <li>Year:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="year" class="bookYearField" th:value="${book.year}" type="text" required="required"/></li>
+                        <li>Publisher:&nbsp;<input name="publisher" class="bookPublisherField" th:value="${book.publisher}" type="text" required="required"/></li>
                         <li class="entryButtons">
                             <button name="action" type="submit" value="edit" class="btn btn-default btn-xs editButton">Save edits</button>
                             <button name="action" type="submit" value="delete" class="btn btn-danger btn-xs deleteButton">Delete</button>
@@ -60,14 +61,14 @@
 
                 <ul th:each="article : ${articles}">
                     <form action="#" th:action="@{/bibtexinator/editArticle/{id}(id=${article.id})}" method="POST">
-                        <li>Author: <input name="author" th:value="${article.author}" type="text" required="required"/></li>
-                        <li>Title: <input name="title" th:value="${article.title}" type="text" required="required"/></li>
-                        <li>Year: <input name="year" th:value="${article.year}" type="text" required="required"/></li>
-                        <li>Journal: <input name="journal" th:value="${article.journal}" type="text" required="required"/></li>
-                        <li>Volume: <input name="volume" th:value="${article.volume}" type="text"/></li>
-                        <li>Number: <input name="number" th:value="${article.number}" type="text"/></li>
-                        <li>Month: <input name="month" th:value="${article.month}" type="text"/></li>
-                        <li>Pages: <input name="pages" th:value="${article.pages}" type="text"/></li>
+                        <li>Author: <input class="articleAuthorField" name="author" th:value="${article.author}" type="text" required="required"/></li>
+                        <li>Title: <input class="articleTitleField" name="title" th:value="${article.title}" type="text" required="required"/></li>
+                        <li>Year: <input class="articleYearField" name="year" th:value="${article.year}" type="text" required="required"/></li>
+                        <li>Journal: <input class="articleJournalField" name="journal" th:value="${article.journal}" type="text" required="required"/></li>
+                        <li>Volume: <input class="articleVolumeField" name="volume" th:value="${article.volume}" type="text"/></li>
+                        <li>Number: <input class="articleNumberField" name="number" th:value="${article.number}" type="text"/></li>
+                        <li>Month: <input class="articleMonthField" name="month" th:value="${article.month}" type="text"/></li>
+                        <li>Pages: <input class="articlePagesField" name="pages" th:value="${article.pages}" type="text"/></li>
                         <li>
                             <button name="action" type="submit" value="edit" class="btn btn-default">Save edits</button>
                             <button name="action" type="submit" value="delete" class="btn btn-danger">Delete</button>
@@ -76,15 +77,15 @@
                 </ul>
                 <ul th:each="inproceedings : ${inproceedingss}">
                     <form action="#" th:action="@{/bibtexinator/editInproceedings/{id}(id=${inproceedings.id})}" method="POST">
-                        <li>Author: <input name="author" th:value="${inproceedings.author}" type="text" required="required"/></li>
-                        <li>Title: <input name="title" th:value="${inproceedings.title}" type="text" required="required"/></li>
-                        <li>Book title: <input name="bookTitle" th:value="${inproceedings.bookTitle}" type="text" required="required"/></li>
-                        <li>Year: <input name="year" th:value="${inproceedings.year}" type="text" required="required"/></li>
-                        <li>Pages: <input name="pages" th:value="${inproceedings.pages}" type="text"/></li>
-                        <li>Organization: <input name="organization" th:value="${inproceedings.organization}" type="text"/></li>
-                        <li>Publisher: <input name="publisher" th:value="${inproceedings.publisher}" type="text"/></li>
-                        <li>Address: <input name="address" th:value="${inproceedings.address}" type="text"/></li>
-                        <li>Month: <input name="month" th:value="${inproceedings.month}" type="text"/></li>
+                        <li>Author: <input class="inproAuthorField" name="author" th:value="${inproceedings.author}" type="text" required="required"/></li>
+                        <li>Title: <input class="inproTitleField" name="title" th:value="${inproceedings.title}" type="text" required="required"/></li>
+                        <li>Book title: <input class="inproBookField" name="bookTitle" th:value="${inproceedings.bookTitle}" type="text" required="required"/></li>
+                        <li>Year: <input class="inproYearField" name="year" th:value="${inproceedings.year}" type="text" required="required"/></li>
+                        <li>Pages: <input class="inproPagesField" name="pages" th:value="${inproceedings.pages}" type="text"/></li>
+                        <li>Organization: <input class="inproOrganizationField" name="organization" th:value="${inproceedings.organization}" type="text"/></li>
+                        <li>Publisher: <input class="inproPublisherField" name="publisher" th:value="${inproceedings.publisher}" type="text"/></li>
+                        <li>Address: <input class="inproAddressField" name="address" th:value="${inproceedings.address}" type="text"/></li>
+                        <li>Month: <input class="inproMonthField" name="month" th:value="${inproceedings.month}" type="text"/></li>
                         <li>
                             <button name="action" type="submit" value="edit" class="btn btn-default">Save edits</button>
                             <button name="action" type="submit" value="delete" class="btn btn-danger">Delete</button>
@@ -105,7 +106,7 @@
                 <table class="table">
                     <tr>
                         <td>Author<span title="Required" style="color:#980000;">*</span>: </td>
-                        <td><input name="author" id="bookAuthor" type="text" th:field="*{author}" /> <span style="rgb(200,200,200);">(in BibTeX format)</span></td>
+                        <td><input name="author" id="bookAuthor" type="text" th:field="*{author}" /> <span style="color:rgb(200,200,200);">(in BibTeX format)</span></td>
                     </tr>
                     <tr>
                         <td>Title<span title="Required" style="color:#980000;">*</span>: </td>
@@ -129,7 +130,7 @@
                 <table class="table">
                     <tr>
                         <td>Author<span title="Required" style="color:#980000;">*</span>: </td>
-                        <td><input name="author" id="articleAuthor" type="text" th:field="*{author}" /> <span style="rgb(200,200,200);">(in BibTeX format)</span></td>
+                        <td><input name="author" id="articleAuthor" type="text" th:field="*{author}" /> <span style="color:rgb(200,200,200);">(in BibTeX format)</span></td>
                     </tr>
                     <tr>
                         <td>Title<span title="Required" style="color:#980000;">*</span>: </td>
