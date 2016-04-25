@@ -35,6 +35,7 @@
             li input {
                 border: 0px;
                 background: none;
+                border-bottom: 1px dotted;
             }
         </style>
     </head>
@@ -46,9 +47,9 @@
             <div id="entryList">
                 <ul th:each="book : ${books}">
                     <form action="#" th:action="@{/bibtexinator/editBook/{id}(id=${book.id})}" method="POST" class="entryContent">
-                        <li>Author: <input name="author" th:value="${book.author}" type="text" required="required"/></li>
-                        <li>Title: <input name="title" th:value="${book.title}" type="text" required="required"/></li>
-                        <li>Year: <input name="year" th:value="${book.year}" type="text" required="required"/></li>
+                        <li>Author:    <input name="author" th:value="${book.author}" type="text" required="required"/></li>
+                        <li>Title:     <input name="title" th:value="${book.title}" type="text" required="required"/></li>
+                        <li>Year:      <input name="year" th:value="${book.year}" type="text" required="required"/></li>
                         <li>Publisher: <input name="publisher" th:value="${book.publisher}" type="text" required="required"/></li>
                         <li class="entryButtons">
                             <button name="action" type="submit" value="edit" class="btn btn-default btn-xs editButton">Save edits</button>
