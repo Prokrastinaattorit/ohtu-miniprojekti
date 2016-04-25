@@ -19,7 +19,6 @@ public class BibTexGenerator {
         addTitle(sb, book);
         addYear(sb, book);
         addPublisher(sb, book.getPublisher());
-        addMonth(sb, null);
         addEnd(sb);
         return replaceFinnishLetters(sb.toString());
     }
@@ -33,9 +32,8 @@ public class BibTexGenerator {
         addJournal(sb, article.getJournal());
         addVolume(sb, article.getVolume());
         addPages(sb, article.getPages());
-        addNumber(sb, null);
-        addMonth(sb, null);
-        addAddress(sb, null);
+        addNumber(sb, article.getNumber());
+        addMonth(sb, article.getMonth());
         addEnd(sb);
         return replaceFinnishLetters(sb.toString());
     }
@@ -49,7 +47,9 @@ public class BibTexGenerator {
         addYear(sb, inpr);
         addPages(sb, inpr.getPages());
         addPublisher(sb, inpr.getPublisher());
-        addMonth(sb, null);
+        addMonth(sb, inpr.getMonth());
+        addAddress(sb, inpr.getAddress());
+        addOrganization(sb, inpr.getOrganization());
         addEnd(sb);
         return replaceFinnishLetters(sb.toString());
     }
@@ -120,7 +120,7 @@ public class BibTexGenerator {
         }
     }
 
-        private void addAddress(StringBuilder sb, String address) {
+    private void addAddress(StringBuilder sb, String address) {
         if (address != null && !address.isEmpty()) {
             sb.append(tab);
             sb.append("address = {");
@@ -128,7 +128,7 @@ public class BibTexGenerator {
             sb.append("},\n");
         }
     }
-    
+
     private void addJournal(StringBuilder sb, String journal) {
         sb.append(tab);
         sb.append("journal = {");
@@ -179,6 +179,15 @@ public class BibTexGenerator {
             result = result + string.charAt(0);
         }
         return result;
+    }
+    
+    private void addOrganization(StringBuilder sb, String organization) {
+        if (organization != null && !organization.isEmpty()) {
+            sb.append(tab);
+            sb.append("organization = {");
+            sb.append(organization);
+            sb.append("},\n");
+        }
     }
 
 }

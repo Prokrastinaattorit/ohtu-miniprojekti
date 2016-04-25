@@ -107,6 +107,8 @@ public class BibtexController {
         oldArticle.setTitle(article.getTitle());
         oldArticle.setPages(article.getPages());
         oldArticle.setVolume(article.getVolume());
+        oldArticle.setNumber(article.getNumber());
+        oldArticle.setMonth(article.getMonth());
         oldArticle.setYear(article.getYear());
 
         articleRepository.save(oldArticle);
