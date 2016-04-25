@@ -132,14 +132,14 @@
                 <artifactId>maven-easyb-plugin</artifactId>
                 <version>1.4</version>
 
-                <executions>
+                <!--<executions>
                     <execution>
                         <phase>integration-test</phase>
                         <goals>
                             <goal>test</goal>
                         </goals>
                     </execution>
-                </executions>
+                </executions>-->
                 <configuration>
                     <storyType>html</storyType>
                     <storyReport>${basedir}/target/easyb/easyb-report.html
