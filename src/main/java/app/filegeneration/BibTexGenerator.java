@@ -6,6 +6,8 @@ import app.domain.Entry;
 import app.domain.Inproceedings;
 
 public class BibTexGenerator {
+    
+    //TODO: refactor
 
     private final String tab = "  ";
 

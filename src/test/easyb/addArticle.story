@@ -7,6 +7,7 @@ scenario "User can add a valid article entry", {
     given 'on frontpage', {
         driver = new HtmlUnitDriver();
         driver.get("http://localhost:8080/bibtexinator");
+        driver.findElement(By.id("deleteAllButton")).submit();
     }
 
     when 'user fills the @article form and submits', {

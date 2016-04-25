@@ -1,18 +1,15 @@
 import org.openqa.selenium.*
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
-description 'User can add an Article entry'
+description 'User can edit an Article entry'
 
-scenario "User can delete article entry", {
-    given 'on frontpage', {
+scenario "User can edit a valid article entry", {
+    given 'on frontpage an article is added', {
         driver = new HtmlUnitDriver();
         driver.get("http://localhost:8080/bibtexinator");
         driver.findElement(By.id("deleteAllButton")).submit();
-    }
-
-    when 'user fills the @article form and submits, then deletes', {
         element = driver.findElement(By.id("articleAuthor"));
-        element.sendKeys("Author Article");
+        element.sendKeys("Author A");
         element = driver.findElement(By.id("articleTitle"));
         element.sendKeys("Title of article");
         element = driver.findElement(By.id("articleYear"));
@@ -25,11 +22,17 @@ scenario "User can delete article entry", {
         element.sendKeys("200-205");
         element = driver.findElement(By.name("addArticle"));
         element.submit();
+    }
 
-        element = driver.findElement(By.className("deleteButton"));
+    when 'user edits the @article form and submits', {
+        element = driver.findElement(By.className("articleAuthorField"));
+        element.sendKeys("Author B");
+        element = driver.findElement(By.className("editButton"));
+        element.submit();
+        driver.navigate().refresh();
     }
  
-    then 'article is deleted', {
-        driver.getPageSource().contains("Author Article").shouldBe false
+    then 'article is edited', {
+        driver.getPageSource().contains("Author B").shouldBe true
     }
 }

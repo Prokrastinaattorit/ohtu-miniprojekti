@@ -7,11 +7,12 @@ scenario "User can delete inproceedings entry", {
     given 'on frontpage', {
         driver = new HtmlUnitDriver();
         driver.get("http://localhost:8080/bibtexinator");
+        driver.findElement(By.id("deleteAllButton")).submit();
     }
 
     when 'user fills the @inproceedings form and submits, then deletes', {
         element = driver.findElement(By.id("inAuthor"));
-        element.sendKeys("Author B");
+        element.sendKeys("Author In");
         element = driver.findElement(By.id("inTitle"));
         element.sendKeys("Title of inproceedings");
         element = driver.findElement(By.id("inBookTitle"));
@@ -29,6 +30,7 @@ scenario "User can delete inproceedings entry", {
     }
  
     then 'inproceedings is deleted', {
-        driver.getPageSource().contains("Author B").shouldBe false
+        driver.navigate().refresh();
+        driver.getPageSource().contains("Author In").shouldBe false
     }
 }
