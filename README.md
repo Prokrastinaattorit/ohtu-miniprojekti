@@ -22,4 +22,4 @@ Ja toisella komentorivillä (ohjelman käynnistyttyä):
 ```
 mvn integration-test
 ```
-Tämä ajaa sekä tavalliset testit että easyb-testit. Suorituksen lopussa kerrotaan "scenarios run" ja "total behaviors ran".
+Tämä ajaa sekä tavalliset testit että easyb-testit. Suorituksen lopussa kerrotaan easyb:n "scenarios run" ja "total behaviors ran".
