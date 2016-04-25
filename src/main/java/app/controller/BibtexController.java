@@ -185,5 +185,13 @@ public class BibtexController {
 
         return "redirect:/bibtexinator";
     }
+    
+    @RequestMapping(method = RequestMethod.POST, value = "/deleteAll")
+    public String deleteAll() {
+        bookRepository.deleteAll();
+        articleRepository.deleteAll();
+        inproceedingsRepository.deleteAll();
+        return "redirect:/bibtexinator";
+    }
 
 }
