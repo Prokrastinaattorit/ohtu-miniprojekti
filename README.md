@@ -4,7 +4,7 @@ https://coveralls.io/repos/github/Prokrastinaattorit/ohtu-miniprojekti/badge.svg
 )](
 https://coveralls.io/github/Prokrastinaattorit/ohtu-miniprojekti?branch=master
 ) 
-[![GitHub release](https://img.shields.io/badge/release-sprint1-brightgreen.svg?style=flat)](https://github.com/Prokrastinaattorit/ohtu-miniprojekti/releases/latest)
+[![GitHub release](https://img.shields.io/badge/release-sprint2-brightgreen.svg?style=flat)](https://github.com/Prokrastinaattorit/ohtu-miniprojekti/releases/latest)
 
 Ohjelmistotuotantokurssin miniprojekti, kevät 2016.
 
@@ -14,11 +14,7 @@ Backlog: https://trello.com/b/I76kFLET/ohtuminiproju
 
 Burndown: https://www.burndownfortrello.com/index.php
 
-**HUOMIO!** Travis ei ainakaan toistaiseksi aja easyb-testejä, niiden ajamiseksi suorita:
-```
-mvn exec:java
-```
-Ja toisella komentorivillä (ohjelman käynnistyttyä):
+Testit saa ajettua komennolla:
 ```
 mvn integration-test
 ```
