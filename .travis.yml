@@ -2,6 +2,6 @@ jdk:
   - openjdk7
 script:
   - mvn compile
-  - mvn test
+  - mvn integration-test
 after_success:
   - mvn clean cobertura:cobertura coveralls:report
