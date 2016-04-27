@@ -27,10 +27,10 @@ scenario "User can delete inproceedings entry", {
         element.submit();
 
         element = driver.findElement(By.className("deleteButton"));
+        element.click();
     }
  
     then 'inproceedings is deleted', {
-        driver.navigate().refresh();
-        //driver.getPageSource().contains("Author In").shouldBe false
+        driver.getPageSource().contains("Author In").shouldBe false
     }
 }

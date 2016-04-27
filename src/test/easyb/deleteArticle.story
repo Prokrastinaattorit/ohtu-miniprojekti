@@ -27,9 +27,10 @@ scenario "User can delete article entry", {
         element.submit();
 
         element = driver.findElement(By.className("deleteButton"));
+        element.click();
     }
  
     then 'article is deleted', {
-        //driver.getPageSource().contains("Author Article").shouldBe false
+        driver.getPageSource().contains("Author Article").shouldBe false
     }
 }

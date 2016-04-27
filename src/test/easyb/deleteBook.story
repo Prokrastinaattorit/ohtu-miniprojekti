@@ -23,9 +23,10 @@ scenario "User can delete book entry", {
         element.submit();
 
         element = driver.findElement(By.className("deleteButton"));
+        element.click();
     }
  
     then 'book is deleted', {
-        //driver.getPageSource().contains("Sofi Oksanen").shouldBe false
+        driver.getPageSource().contains("Sofi Oksanen").shouldBe false
     }
 }

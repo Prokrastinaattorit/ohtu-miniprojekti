@@ -26,9 +26,10 @@ scenario "User can edit a valid article entry", {
 
     when 'user edits the @article form and submits', {
         element = driver.findElement(By.className("articleAuthorField"));
+        element.clear();
         element.sendKeys("Author B");
         element = driver.findElement(By.className("editButton"));
-        element.submit();
+        element.click();
         driver.navigate().refresh();
     }
  
