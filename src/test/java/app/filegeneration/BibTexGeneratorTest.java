@@ -61,6 +61,33 @@ public class BibTexGeneratorTest {
     }
 
     @Test
+    public void testGenerateArticleWhenAllFieldsAreFilled() {
+        Article article = new Article();
+        article.setAuthor("article");
+        article.setJournal("journal");
+        article.setYear("2009");
+        article.setTitle("title");
+        article.setPages("100-150");
+        article.setVolume("3");
+        article.setNumber("5");
+        article.setMonth("12");
+
+        String result = bibtexnator.articletEntryToBibTex(article);
+        System.out.println(result);
+        assertEquals(result, "@article{a09,\n"
+                + "  author = {article},\n"
+                + "  title = {title},\n"
+                + "  year = {2009},\n"
+                + "  journal = {journal},\n"
+                + "  volume = {3},\n"
+                + "  pages = {100-150},\n"
+                + "  number = {5},\n"
+                + "  month = {12},\n"
+                + "}\n");
+
+    }
+
+    @Test
     public void testGenerateInproceedings() {
         Inproceedings inproceedings = new Inproceedings();
         inproceedings.setAuthor("author");
@@ -79,6 +106,35 @@ public class BibTexGeneratorTest {
                 + "  year = {1994},\n"
                 + "  pages = {pages},\n"
                 + "  publisher = {publisher},\n"
+                + "}\n");
+
+    }
+
+    @Test
+    public void testGenerateInproceedingsWhenAllFieldsAreFilled() {
+        Inproceedings inproceedings = new Inproceedings();
+        inproceedings.setAuthor("author");
+        inproceedings.setTitle("title");
+        inproceedings.setBookTitle("bookTitle");
+        inproceedings.setYear("1994");
+        inproceedings.setPages("19-21");
+        inproceedings.setOrganization("organization");
+        inproceedings.setPublisher("publisher");
+        inproceedings.setAddress("address");
+        inproceedings.setMonth("5");
+
+        String result = bibtexnator.inproceedingstEntryToBibTex(inproceedings);
+        System.out.println(result);
+        assertEquals(result, "@inproceedings{a94,\n"
+                + "  author = {author},\n"
+                + "  title = {title},\n"
+                + "  bookTitle = {bookTitle},\n"
+                + "  year = {1994},\n"
+                + "  pages = {19-21},\n"
+                + "  publisher = {publisher},\n"
+                + "  month = {5},\n"
+                + "  address = {address},\n"
+                + "  organization = {organization},\n"
                 + "}\n");
 
     }
