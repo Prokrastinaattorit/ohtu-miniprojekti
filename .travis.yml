@@ -2,6 +2,6 @@ jdk:
   - openjdk7
 script:
   - mvn compile
-  - mvn integration-test | egrep -v "(^DEBUG)"
+  - mvn integration-test
 after_success:
   - mvn clean cobertura:cobertura coveralls:report
