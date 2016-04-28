@@ -27,3 +27,26 @@ scenario "User can add a valid book entry", {
         driver.getPageSource().contains("Sofi Oksanen").shouldBe true
     }
 }
+
+scenario "User can't add an invalid book entry", {
+    given 'on frontpage', {
+        driver = new HtmlUnitDriver();
+        driver.get("http://localhost:8080/bibtexinator");
+        driver.findElement(By.id("deleteAllButton")).submit();
+    }
+
+    when 'user fills the @book form and submits, missing title', {
+        element = driver.findElement(By.id("bookAuthor"));
+        element.sendKeys("Sofi Oksanen");
+        element = driver.findElement(By.id("bookYear"));
+        element.sendKeys("2008");
+        element = driver.findElement(By.id("bookPublisher"));
+        element.sendKeys("WSOY");
+        element = driver.findElement(By.name("addBook"));
+        element.submit();
+    }
+ 
+    then 'new book is not created', {
+        driver.getPageSource().contains("Sofi Oksanen").shouldBe false
+    }
+}

@@ -3,7 +3,7 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 description 'User can edit an Inproceedings entry'
 
-scenario "User can edit a valid Inproceedings entry", {
+scenario "User can't break a valid Inproceedings entry", {
     given 'on frontpage an inproceedings is added', {
         driver = new HtmlUnitDriver();
         driver.get("http://localhost:8080/bibtexinator");
@@ -24,16 +24,15 @@ scenario "User can edit a valid Inproceedings entry", {
         element.submit();
     }
 
-    when 'user edits the @inproceedings form and submits', {
+    when 'user edits the @inproceedings form and submits, leaving author blank', {
         element = driver.findElement(By.className("inproAuthorField"));
         element.clear();
-        element.sendKeys("Joku Jaska");
         element = driver.findElement(By.className("editButton"));
         element.click();
         driver.navigate().refresh();
     }
  
     then 'Inproceedings is edited', {
-        driver.getPageSource().contains("Joku Jaska").shouldBe true
+        driver.getPageSource().contains("Jaska Jokunen").shouldBe false
     }
 }
