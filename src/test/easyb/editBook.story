@@ -22,9 +22,10 @@ scenario "User can edit a valid book entry", {
 
     when 'user edits the @book form and submits', {
         element = driver.findElement(By.className("bookAuthorField"));
+        element.clear();
         element.sendKeys("Parempi kirjailija");
         element = driver.findElement(By.className("editButton"));
-        element.submit();
+        element.click();
         driver.navigate().refresh();
     }
  

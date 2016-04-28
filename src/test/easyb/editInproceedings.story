@@ -26,9 +26,10 @@ scenario "User can edit a valid Inproceedings entry", {
 
     when 'user edits the @inproceedings form and submits', {
         element = driver.findElement(By.className("inproAuthorField"));
+        element.clear();
         element.sendKeys("Joku Jaska");
         element = driver.findElement(By.className("editButton"));
-        element.submit();
+        element.click();
         driver.navigate().refresh();
     }
  
