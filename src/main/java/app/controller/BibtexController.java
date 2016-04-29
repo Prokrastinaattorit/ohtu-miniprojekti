@@ -2,11 +2,15 @@ package app.controller;
 
 import app.domain.Article;
 import app.domain.Book;
+import app.domain.Booklet;
 import app.domain.FileForm;
 import app.domain.Inproceedings;
+import app.domain.Manual;
 import app.repositories.ArticleRepository;
 import app.repositories.BookRepository;
+import app.repositories.BookletRepository;
 import app.repositories.InproceedingsRepository;
+import app.repositories.ManualRepository;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +33,12 @@ public class BibtexController {
 
     @Autowired
     InproceedingsRepository inproceedingsRepository;
+    
+    @Autowired
+    BookletRepository bookletRepository;
+    
+    @Autowired
+    ManualRepository manualRepository;
 
     @ModelAttribute
     private Article getArticle() {
@@ -44,6 +54,16 @@ public class BibtexController {
     private Inproceedings getInproceedings() {
         return new Inproceedings();
     }
+    
+    @ModelAttribute
+    private Booklet getBooklet() {
+        return new Booklet();
+    }
+    
+    @ModelAttribute
+    private Manual getManual() {
+        return new Manual();
+    }
 
     @ModelAttribute("FileForm")
     private FileForm getFileForm() {
@@ -57,6 +77,8 @@ public class BibtexController {
         model.addAttribute("article", new Article());
         model.addAttribute("articles", articleRepository.findAll());
         model.addAttribute("inproceedingss", inproceedingsRepository.findAll());
+        model.addAttribute("booklets", bookletRepository.findAll());
+        model.addAttribute("manuals", manualRepository.findAll());
         return "bibtexinator";
     }
 
@@ -71,7 +93,31 @@ public class BibtexController {
 
         return "redirect:/bibtexinator";
     }
+    
+    @RequestMapping(method = RequestMethod.POST, value = "/saveBooklet")
+    public String saveBooklet(@Valid @ModelAttribute Booklet booklet,
+            BindingResult bindingResult) {
 
+        if (bindingResult.hasErrors()) {
+            return "redirect:/bibtexinator";
+        }
+        bookletRepository.save(booklet);
+
+        return "redirect:/bibtexinator";
+    }
+    
+    @RequestMapping(method = RequestMethod.POST, value = "/saveManual")
+    public String saveManual(@Valid @ModelAttribute Manual manual,
+            BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return "redirect:/bibtexinator";
+        }
+        manualRepository.save(manual);
+
+        return "redirect:/bibtexinator";
+    }
+    
     @RequestMapping(method = RequestMethod.POST, value = "/editBook/{id}", params = "action=edit")
     public String editBook(@Valid @ModelAttribute Book book, @PathVariable Long id,
             BindingResult bindingResult) {
@@ -91,6 +137,56 @@ public class BibtexController {
 
         return "redirect:/bibtexinator";
     }
+    
+    @RequestMapping(method = RequestMethod.POST, value = "/editBooklet/{id}", params = "action=edit")
+    public String editBooklet(@Valid @ModelAttribute Booklet booklet, @PathVariable Long id,
+            BindingResult bindingResult) {
+
+        Booklet oldBooklet = bookletRepository.findOne(id);
+
+        if (bindingResult.hasErrors()) {
+            return "redirect:/bibtexinator";
+        }
+
+        oldBooklet.setAuthor(booklet.getAuthor());
+        oldBooklet.setTitle(booklet.getTitle());
+        oldBooklet.setYear(booklet.getYear());
+        oldBooklet.setHowpublished(booklet.getHowpublished());
+        oldBooklet.setMonth(booklet.getMonth());
+        oldBooklet.setNote(booklet.getNote());
+        oldBooklet.setAddress(booklet.getAddress());
+
+        bookletRepository.save(oldBooklet);
+
+        return "redirect:/bibtexinator";
+    }
+    
+    @RequestMapping(method = RequestMethod.POST, value = "/editManual/{id}", params = "action=edit")
+    public String editManual(@Valid @ModelAttribute Manual manual, @PathVariable Long id,
+            BindingResult bindingResult) {
+
+        Manual oldManual = manualRepository.findOne(id);
+
+        if (bindingResult.hasErrors()) {
+            return "redirect:/bibtexinator";
+        }
+
+        oldManual.setAddress(manual.getAddress());
+        oldManual.setAuthor(manual.getAuthor());
+        oldManual.setEdition(manual.getEdition());
+        oldManual.setMonth(manual.getMonth());
+        oldManual.setNote(manual.getNote());
+        oldManual.setOrganization(manual.getOrganization());
+        oldManual.setTitle(manual.getTitle());
+        oldManual.setYear(manual.getYear());
+        
+
+        manualRepository.save(oldManual);
+
+        return "redirect:/bibtexinator";
+    }
+
+    
 
     @RequestMapping(method = RequestMethod.POST, value = "/editArticle/{id}", params = "action=edit")
     public String editArticle(@Valid @ModelAttribute Article article, @PathVariable Long id,
@@ -166,6 +262,22 @@ public class BibtexController {
     public String deleteBook(@PathVariable Long id) {
 
         bookRepository.delete(id);
+
+        return "redirect:/bibtexinator";
+    }
+    
+    @RequestMapping(method = RequestMethod.POST, value = "/editBooklet/{id}", params = "action=delete")
+    public String deleteBooklet(@PathVariable Long id) {
+
+        bookletRepository.delete(id);
+
+        return "redirect:/bibtexinator";
+    }
+    
+    @RequestMapping(method = RequestMethod.POST, value = "/editManual/{id}", params = "action=delete")
+    public String deleteManual(@PathVariable Long id) {
+
+        manualRepository.delete(id);
 
         return "redirect:/bibtexinator";
     }
