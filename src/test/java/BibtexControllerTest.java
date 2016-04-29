@@ -2,10 +2,14 @@
 import app.Application;
 import app.domain.Article;
 import app.domain.Book;
+import app.domain.Booklet;
 import app.domain.Inproceedings;
+import app.domain.Manual;
 import app.repositories.ArticleRepository;
 import app.repositories.BookRepository;
+import app.repositories.BookletRepository;
 import app.repositories.InproceedingsRepository;
+import app.repositories.ManualRepository;
 import java.io.File;
 import org.junit.Assert;
 import org.junit.Before;
@@ -40,6 +44,12 @@ public class BibtexControllerTest {
     
     @Autowired
     private InproceedingsRepository inproceedingsRepository;
+    
+    @Autowired
+    private BookletRepository bookletRepository;
+    
+    @Autowired
+    private ManualRepository manualRepository;
 
     private MockMvc mockMvc;
 
@@ -105,6 +115,59 @@ public class BibtexControllerTest {
         Assert.assertTrue(vastaus);
     }
     
+    @Test
+    public void pikkuKirjanLuontiOnnistuu() throws Exception {
+        MvcResult res = mockMvc.perform(post("/bibtexinator/saveBooklet").param("author", "aaaa").param("title", "bbbb").param("year", "cccc").param("howpublished", "dddd").param("address", "eeee").param("month", "ffff").param("note", "gggg"))
+                .andExpect(status().is3xxRedirection())
+                .andReturn();
+
+        boolean vastaus = false;
+
+        if (bookletRepository.findAll() != null) {
+
+            for (Booklet booklet : bookletRepository.findAll()) {
+                if (booklet.getAuthor().equals("aaaa")
+                        && booklet.getTitle().equals("bbbb")
+                        && booklet.getYear().equals("cccc")
+                        && booklet.getHowpublished().equals("dddd")
+                        && booklet.getAddress().equals("eeee")
+                        && booklet.getMonth().equals("ffff")
+                        && booklet.getNote().equals("gggg")) {
+                    vastaus = true;
+                }
+            }
+        }
+
+        Assert.assertTrue(vastaus);
+    }
+    
+    @Test
+    public void manualinLuontiOnnistuu() throws Exception {
+        MvcResult res = mockMvc.perform(post("/bibtexinator/saveManual").param("author", "aaaa").param("title", "bbbb").param("organization", "cccc").param("address", "dddd").param("edition", "eeee").param("month", "ffff").param("year", "gggg").param("note", "hhhh"))
+                .andExpect(status().is3xxRedirection())
+                .andReturn();
+
+        boolean vastaus = false;
+
+        if (manualRepository.findAll() != null) {
+
+            for (Manual manual : manualRepository.findAll()) {
+                if (manual.getAuthor().equals("aaaa")
+                        && manual.getTitle().equals("bbbb")
+                        && manual.getOrganization().equals("cccc")
+                        && manual.getAddress().equals("dddd")
+                        && manual.getEdition().equals("eeee")
+                        && manual.getMonth().equals("ffff")
+                        && manual.getYear().equals("gggg")
+                        && manual.getNote().equals("hhhh")) {
+                    vastaus = true;
+                }
+            }
+        }
+
+        Assert.assertTrue(vastaus);
+    }
+    
     
 
     @Test
@@ -134,6 +197,67 @@ public class BibtexControllerTest {
                         && book.getTitle().equals("yyyy")
                         && book.getYear().equals("zzzz")
                         && book.getPublisher().equals("ffff")) {
+                    vastaus = true;
+                }
+            }
+        }
+
+        Assert.assertTrue(vastaus);
+    }
+    
+    @Test
+    public void pikkuKirjanEditointiOnnistuu() throws Exception {
+        MvcResult res = mockMvc.perform(post("/bibtexinator/saveBooklet").param("author", "aaaa").param("title", "bbbb").param("year", "cccc").param("howpublished", "dddd").param("address", "eeee").param("month", "ffff").param("note", "gggg"))
+                .andExpect(status().is3xxRedirection())
+                .andReturn();
+        Long id = bookletRepository.findAll().get(0).getId();
+        res = mockMvc.perform(post("/bibtexinator/editBooklet/" + id).param("action", "edit").param("author", "xxxx").param("title", "zzzz").param("year", "cccc").param("howpublished", "dddd").param("address", "eeee").param("month", "ffff").param("note", "gggg"))
+                .andExpect(status().is3xxRedirection())
+                .andReturn();
+
+        boolean vastaus = false;
+
+        if (bookletRepository.findAll() != null) {
+
+            for (Booklet booklet : bookletRepository.findAll()) {
+                if (booklet.getAuthor().equals("xxxx")
+                        && booklet.getTitle().equals("zzzz")
+                        && booklet.getYear().equals("cccc")
+                        && booklet.getHowpublished().equals("dddd")
+                        && booklet.getAddress().equals("eeee")
+                        && booklet.getMonth().equals("ffff")
+                        && booklet.getNote().equals("gggg")) {
+                    vastaus = true;
+                }
+            }
+        }
+
+        Assert.assertTrue(vastaus);
+    }
+    
+    @Test
+    public void manualinEditointiOnnistuu() throws Exception {
+        MvcResult res = mockMvc.perform(post("/bibtexinator/saveManual").param("author", "aaaa").param("title", "bbbb").param("organization", "cccc").param("address", "dddd").param("edition", "eeee").param("month", "ffff").param("year", "gggg").param("note", "hhhh"))
+                .andExpect(status().is3xxRedirection())
+                .andReturn();
+        Long id = manualRepository.findAll().get(0).getId();
+        res = mockMvc.perform(post("/bibtexinator/editManual/" + id).param("action", "edit").param("author", "wwww").param("title", "eeee").param("organization", "qqqq").param("address", "dddd").param("edition", "eeee").param("month", "ffff").param("year", "gggg").param("note", "hhhh"))
+                .andExpect(status().is3xxRedirection())
+                .andReturn();
+
+        boolean vastaus = false;
+
+        if (manualRepository.findAll() != null) {
+
+            for (Manual manual : manualRepository.findAll()) {
+                if (manual.getAuthor().equals("wwww")
+                        && manual.getTitle().equals("eeee")
+                        && manual.getOrganization().equals("qqqq")
+                        && manual.getAddress().equals("dddd")
+                        && manual.getEdition().equals("eeee")
+                        && manual.getMonth().equals("ffff")
+                        && manual.getYear().equals("gggg")
+                        && manual.getNote().equals("hhhh")) {
                     vastaus = true;
                 }
             }
@@ -214,6 +338,32 @@ public class BibtexControllerTest {
 
         
         Assert.assertTrue(bookRepository.findOne(id)== null);
+    }
+    
+    @Test
+    public void pikkuKirjanPoistoOnnistuu() throws Exception {
+        MvcResult res = mockMvc.perform(post("/bibtexinator/saveBooklet").param("author", "aaaa").param("title", "bbbb").param("year", "cccc").param("howpublished", "dddd").param("address", "eeee").param("month", "ffff").param("note", "gggg"))
+                .andExpect(status().is3xxRedirection())
+                .andReturn();
+        Long id = bookletRepository.findAll().get(0).getId();
+        res = mockMvc.perform(post("/bibtexinator/editBooklet/" + id).param("action", "delete"))
+                .andExpect(status().is3xxRedirection())
+                .andReturn();
+
+        Assert.assertTrue(bookletRepository.findOne(id)== null);
+    }
+    
+    @Test
+    public void manualinPoistoOnnistuu() throws Exception {
+        MvcResult res = mockMvc.perform(post("/bibtexinator/saveManual").param("author", "aaaa").param("title", "bbbb").param("organization", "cccc").param("address", "dddd").param("edition", "eeee").param("month", "ffff").param("year", "gggg").param("note", "hhhh"))
+                .andExpect(status().is3xxRedirection())
+                .andReturn();
+        Long id = manualRepository.findAll().get(0).getId();
+        res = mockMvc.perform(post("/bibtexinator/editManual/" + id).param("action", "delete"))
+                .andExpect(status().is3xxRedirection())
+                .andReturn();
+
+        Assert.assertTrue(manualRepository.findOne(id)== null);
     }
     
     @Test
