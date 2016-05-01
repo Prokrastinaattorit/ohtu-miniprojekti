@@ -1,7 +1,7 @@
 import org.openqa.selenium.*
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
-description 'User can add a Book entry'
+description 'User can delete a Book entry'
 
 scenario "User can delete book entry", {
     given 'on frontpage', {

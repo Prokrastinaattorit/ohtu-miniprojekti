@@ -1,7 +1,7 @@
 import org.openqa.selenium.*
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
-description 'User can add an Inproceedings entry'
+description 'User can delete an Inproceedings entry'
 
 scenario "User can delete inproceedings entry", {
     given 'on frontpage', {
