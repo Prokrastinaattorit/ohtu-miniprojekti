@@ -68,8 +68,8 @@ public class FileDownloadController {
         PrintWriter pw = null;
         FileWriter fw = new FileWriter(downloadFile, true);
         pw = new PrintWriter(fw);
-        System.out.println(ftg.generateBibtexFromEntrys());
-        pw.println(ftg.generateBibtexFromEntrys());
+        System.out.println(ftg.generateBibtexFromEntries());
+        pw.println(ftg.generateBibtexFromEntries());
         pw.close();
 
         FileInputStream inputStream = new FileInputStream(downloadFile);

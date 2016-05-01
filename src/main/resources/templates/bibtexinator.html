@@ -118,7 +118,7 @@
                         </li>
                     </form>
                 </ul>
-                
+
                 <ul class="entry" th:each="booklet : ${booklets}">
                     <p class="entryHeader">Booklet</p>
                     <form action="#" th:action="@{/bibtexinator/editBooklet/{id}(id=${booklet.id})}" method="POST" class="entryContent">
@@ -280,27 +280,63 @@
                         <td><input name="title" id="bookletTitle" type="text" th:field="*{title}" /></td>
                     </tr>
                     <tr>
-                        <td>Author<span style="color:#980000;">*</span>: </td>
-                        <td><input name="author" id="bookletAuthor" type="text" th:field="*{author}" /> <span style="color:rgb(200,200,200);">(in BibTeX format)</span></td>
+                        <td>Author: </td>
+                        <td><input name="author" id="bookletAuthor" type="text" th:field="*{author}" /></td>
                     </tr>
                     <tr>
-                        <td>Howpublished<span style="color:#980000;">*</span>: </td>
-                        <td><input name="howpublished" id="bookletHowpublished" type="text" th:field="*{howpublished}" /> <span style="color:rgb(200,200,200);">(in BibTeX format)</span></td>
+                        <td>Howpublished: </td>
+                        <td><input name="howpublished" id="bookletHowpublished" type="text" th:field="*{howpublished}" /></td>
                     </tr>
                     <tr>
-                        <td>Address<span style="color:#980000;">*</span>: </td>
-                        <td><input name="address" id="bookletAddress" type="text" th:field="*{address}" /> <span style="color:rgb(200,200,200);">(in BibTeX format)</span></td>
+                        <td>Address: </td>
+                        <td><input name="address" id="bookletAddress" type="text" th:field="*{address}" /></td>
                     </tr>
                     <tr>
-                        <td>Month<span style="color:#980000;">*</span>: </td>
-                        <td><input name="month" id="bookletMonth" type="text" th:field="*{month}" /> <span style="color:rgb(200,200,200);">(in BibTeX format)</span></td>
+                        <td>Month: </td>
+                        <td><input name="month" id="bookletMonth" type="text" th:field="*{month}" /></td>
                     </tr>
                     <tr>
-                        <td>Year<span style="color:#980000;">*</span>: </td>
+                        <td>Year: </td>
                         <td><input name="year" id="bookletYear" type="text" th:field="*{year}" /></td>
                     </tr>
                     <tr>
-                        <td><button name="addBook" type="submit" class="btn btn-default">Submit</button></td>
+                        <td><button name="addBooklet" type="submit" class="btn btn-default">Submit</button></td>
+                    </tr>
+                </table>
+            </form>
+            <h3>Add a Manual</h3>
+            <form action="#" th:action="@{/bibtexinator/saveManual}" th:object="${manual}" method="POST">
+                <table class="table">
+                    <tr>
+                        <td>Title<span title="Required" style="color:#980000;">*</span>: </td>
+                        <td><input name="title" id="manualTitle" type="text" th:field="*{title}" /></td>
+                    </tr>
+                    <tr>
+                        <td>Author: </td>
+                        <td><input name="author" id="manualAuthor" type="text" th:field="*{author}" /></td>
+                    </tr>
+                    <tr>
+                        <td>Organization: </td>
+                        <td><input name="organization" id="manualOrganization" type="text" th:field="*{organization}" /></td>
+                    </tr>
+                    <tr>
+                        <td>Address: </td>
+                        <td><input name="address" id="manualAddress" type="text" th:field="*{address}" /></td>
+                    </tr>
+                    <tr>
+                        <td>Edition: </td>
+                        <td><input name="year" id="manualEdition" type="text" th:field="*{edition}" /></td>
+                    </tr>
+                    <tr>
+                        <td>Month: </td>
+                        <td><input name="month" id="manualMonth" type="text" th:field="*{month}" /></td>
+                    </tr>
+                    <tr>
+                        <td>Year: </td>
+                        <td><input name="year" id="manualYear" type="text" th:field="*{year}" /></td>
+                    </tr>
+                    <tr>
+                        <td><button name="addManual" type="submit" class="btn btn-default">Submit</button></td>
                     </tr>
                 </table>
             </form>

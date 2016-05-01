@@ -180,7 +180,6 @@ public class BibtexController {
         oldManual.setAuthor(manual.getAuthor());
         oldManual.setEdition(manual.getEdition());
         oldManual.setMonth(manual.getMonth());
-        oldManual.setNote(manual.getNote());
         oldManual.setOrganization(manual.getOrganization());
         oldManual.setTitle(manual.getTitle());
         oldManual.setYear(manual.getYear());

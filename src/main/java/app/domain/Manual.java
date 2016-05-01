@@ -16,7 +16,6 @@ public class Manual extends AbstractPersistable<Long> implements Entry {
     private String edition;
     private String month;
     private String year;
-    private String note;
 
     public String getTitle() {
         return title;
@@ -73,14 +72,5 @@ public class Manual extends AbstractPersistable<Long> implements Entry {
     public void setYear(String year) {
         this.year = year;
     }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
-
     
 }

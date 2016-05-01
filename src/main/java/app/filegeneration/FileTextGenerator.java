@@ -25,7 +25,7 @@ public class FileTextGenerator {
         bibtexGenerator = new BibTexGenerator();
     }
 
-    public String generateBibtexFromEntrys() {
+    public String generateBibtexFromEntries() {
         StringBuilder sb = new StringBuilder();
 
         for (Article article : articleRepository.findAll()) {

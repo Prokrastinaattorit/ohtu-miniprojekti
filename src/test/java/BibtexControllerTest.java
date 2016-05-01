@@ -159,8 +159,7 @@ public class BibtexControllerTest {
                         && manual.getAddress().equals("dddd")
                         && manual.getEdition().equals("eeee")
                         && manual.getMonth().equals("ffff")
-                        && manual.getYear().equals("gggg")
-                        && manual.getNote().equals("hhhh")) {
+                        && manual.getYear().equals("gggg")) {
                     vastaus = true;
                 }
             }
@@ -258,8 +257,7 @@ public class BibtexControllerTest {
                         && manual.getAddress().equals("dddd")
                         && manual.getEdition().equals("eeee")
                         && manual.getMonth().equals("ffff")
-                        && manual.getYear().equals("gggg")
-                        && manual.getNote().equals("hhhh")) {
+                        && manual.getYear().equals("gggg")) {
                     vastaus = true;
                 }
             }

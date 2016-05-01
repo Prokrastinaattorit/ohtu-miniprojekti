@@ -45,7 +45,7 @@ public class FileTextGeneratorTest {
 
     @Test
     public void returnsEmptyStringIfNoEntrys() {
-        assertEquals("", g.generateBibtexFromEntrys());
+        assertEquals("", g.generateBibtexFromEntries());
     }
 
     @Test
@@ -69,7 +69,7 @@ public class FileTextGeneratorTest {
                 + "  title = {title2},\n"
                 + "  year = {1999},\n"
                 + "  publisher = {publisher2},\n"
-                + "}\n\n", g.generateBibtexFromEntrys());
+                + "}\n\n", g.generateBibtexFromEntries());
     }
 
     @Test
@@ -85,7 +85,7 @@ public class FileTextGeneratorTest {
                 + "  journal = {journal},\n"
                 + "  volume = {5},\n"
                 + "  pages = {2-10},\n"
-                + "}\n\n", g.generateBibtexFromEntrys());
+                + "}\n\n", g.generateBibtexFromEntries());
     }
 
     @Test
@@ -111,6 +111,6 @@ public class FileTextGeneratorTest {
                 + "  title = {title2},\n"
                 + "  year = {2000},\n"
                 + "  publisher = {publisher},\n"
-                + "}\n\n", g.generateBibtexFromEntrys());
+                + "}\n\n", g.generateBibtexFromEntries());
     }
 }
