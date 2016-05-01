@@ -132,6 +132,11 @@ public class BibtexController {
         oldBook.setPublisher(book.getPublisher());
         oldBook.setTitle(book.getTitle());
         oldBook.setYear(book.getYear());
+        oldBook.setVolume(book.getVolume());
+        oldBook.setSeries(book.getSeries());
+        oldBook.setAddress(book.getAddress());
+        oldBook.setEdition(book.getEdition());
+        oldBook.setMonth(book.getMonth());
 
         bookRepository.save(oldBook);
 

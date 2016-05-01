@@ -69,7 +69,7 @@ public class BibtexControllerTest {
 
     @Test
     public void kirjanLuontiOnnistuu() throws Exception {
-        MvcResult res = mockMvc.perform(post("/bibtexinator/saveBook").param("author", "aaaa").param("title", "bbbb").param("year", "cccc").param("publisher", "dddd"))
+        MvcResult res = mockMvc.perform(post("/bibtexinator/saveBook").param("author", "aaaa").param("title", "bbbb").param("year", "cccc").param("publisher", "dddd").param("volume", "aaaa"))
                 .andExpect(status().is3xxRedirection())
                 .andReturn();
 
@@ -81,7 +81,8 @@ public class BibtexControllerTest {
                 if (book.getAuthor().equals("aaaa")
                         && book.getTitle().equals("bbbb")
                         && book.getYear().equals("cccc")
-                        && book.getPublisher().equals("dddd")) {
+                        && book.getPublisher().equals("dddd")
+                        && book.getVolume().equals("aaaa")) {
                     vastaus = true;
                 }
             }
@@ -184,7 +185,7 @@ public class BibtexControllerTest {
                 .andExpect(status().is3xxRedirection())
                 .andReturn();
         Long id = bookRepository.findAll().get(0).getId();
-        res = mockMvc.perform(post("/bibtexinator/editBook/" + id).param("action", "edit").param("author", "xxxx").param("title", "yyyy").param("year", "zzzz").param("publisher", "ffff"))
+        res = mockMvc.perform(post("/bibtexinator/editBook/" + id).param("action", "edit").param("author", "xxxx").param("title", "yyyy").param("year", "zzzz").param("publisher", "ffff").param("volume","fafafa"))
                 .andExpect(status().is3xxRedirection())
                 .andReturn();
 
@@ -196,7 +197,8 @@ public class BibtexControllerTest {
                 if (book.getAuthor().equals("xxxx")
                         && book.getTitle().equals("yyyy")
                         && book.getYear().equals("zzzz")
-                        && book.getPublisher().equals("ffff")) {
+                        && book.getPublisher().equals("ffff")
+                        && book.getVolume().equals("fafafa")) {
                     vastaus = true;
                 }
             }
