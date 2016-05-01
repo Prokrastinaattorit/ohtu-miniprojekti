@@ -15,7 +15,7 @@ public class BibTexGenerator {
     public BibTexGenerator() {
     }
 
-    public String booktEntryToBibTex(Book book) {
+    public String bookEntryToBibTex(Book book) {
         sb = new StringBuilder();
         generateStart("@book", book);
         addAuthor(book.getAuthor());
@@ -31,7 +31,7 @@ public class BibTexGenerator {
         return replaceFinnishLetters();
     }
 
-    public String articletEntryToBibTex(Article article) {
+    public String articleEntryToBibTex(Article article) {
         sb = new StringBuilder();
         generateStart("@article", article);
         addAuthor(article.getAuthor());
@@ -46,7 +46,7 @@ public class BibTexGenerator {
         return replaceFinnishLetters();
     }
 
-    public String inproceedingstEntryToBibTex(Inproceedings inpr) {
+    public String inproceedingsEntryToBibTex(Inproceedings inpr) {
         sb = new StringBuilder();
         generateStart("@inproceedings", inpr);
         addAuthor(inpr.getAuthor());

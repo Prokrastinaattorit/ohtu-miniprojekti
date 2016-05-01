@@ -2,6 +2,7 @@ package app.filegeneration;
 
 import app.domain.Article;
 import app.domain.Book;
+import app.domain.Booklet;
 import app.domain.Inproceedings;
 import org.junit.After;
 import org.junit.Before;
@@ -27,7 +28,7 @@ public class BibTexGeneratorTest {
         book.setPublisher("publisher");
         book.setYear("2008");
         book.setTitle("title");
-        String result = bibtexnator.booktEntryToBibTex(book);
+        String result = bibtexnator.bookEntryToBibTex(book);
         System.out.println(result);
         assertEquals(result, "@book{BA08,\n"
                 + "  author = {Beck, Kent and Andres, Cynthia},\n"
@@ -47,7 +48,7 @@ public class BibTexGeneratorTest {
         article.setPages("pages");
         article.setVolume("volume");
 
-        String result = bibtexnator.articletEntryToBibTex(article);
+        String result = bibtexnator.articleEntryToBibTex(article);
         System.out.println(result);
         assertEquals(result, "@article{a09,\n"
                 + "  author = {article},\n"
@@ -72,7 +73,7 @@ public class BibTexGeneratorTest {
         article.setNumber("5");
         article.setMonth("12");
 
-        String result = bibtexnator.articletEntryToBibTex(article);
+        String result = bibtexnator.articleEntryToBibTex(article);
         System.out.println(result);
         assertEquals(result, "@article{a09,\n"
                 + "  author = {article},\n"
@@ -97,7 +98,7 @@ public class BibTexGeneratorTest {
         inproceedings.setPages("pages");
         inproceedings.setPublisher("publisher");
 
-        String result = bibtexnator.inproceedingstEntryToBibTex(inproceedings);
+        String result = bibtexnator.inproceedingsEntryToBibTex(inproceedings);
         System.out.println(result);
         assertEquals(result, "@inproceedings{a94,\n"
                 + "  author = {author},\n"
@@ -123,7 +124,7 @@ public class BibTexGeneratorTest {
         inproceedings.setAddress("address");
         inproceedings.setMonth("5");
 
-        String result = bibtexnator.inproceedingstEntryToBibTex(inproceedings);
+        String result = bibtexnator.inproceedingsEntryToBibTex(inproceedings);
         System.out.println(result);
         assertEquals(result, "@inproceedings{a94,\n"
                 + "  author = {author},\n"
@@ -139,8 +140,27 @@ public class BibTexGeneratorTest {
 
     }
 
-    
-    
+    @Test
+    public void testGenerateBooklet() {
+        Booklet book = new Booklet();
+        book.setAuthor("Beck, Kent and Andres, Cynthia");
+        book.setHowpublished("howpublished");
+        book.setYear("2008");
+        book.setTitle("title");
+        book.setMonth("month");
+        book.setAddress("address");
+        String result = bibtexnator.bookletEntryToBibTex(book);
+        System.out.println(result);
+        assertEquals(result, "@booklet{BA08,\n"
+                + "  author = {Beck, Kent and Andres, Cynthia},\n"
+                + "  title = {title},\n"
+                + "  year = {2008},\n"
+                + "  address = {address},\n"
+                + "  month = {month},\n"
+                + "  howpublished = {howpublished},\n"
+                + "}\n");
+    }
+
     @Test
     public void testFinnishLetters() {
         Book book = new Book();
@@ -148,7 +168,7 @@ public class BibTexGeneratorTest {
         book.setPublisher("Åbo");
         book.setYear("2018");
         book.setTitle("Ääkköset");
-        String result = bibtexnator.booktEntryToBibTex(book);
+        String result = bibtexnator.bookEntryToBibTex(book);
         System.out.println(result);
         assertEquals(result, "@book{K18,\n"
                 + "  author = {Kirja Kirjailija},\n"

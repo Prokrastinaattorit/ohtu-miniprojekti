@@ -29,17 +29,17 @@ public class FileTextGenerator {
         StringBuilder sb = new StringBuilder();
 
         for (Article article : articleRepository.findAll()) {
-            sb.append(bibtexGenerator.articletEntryToBibTex(article));
+            sb.append(bibtexGenerator.articleEntryToBibTex(article));
             sb.append("\n");
         }
 
         for (Book book : bookRepository.findAll()) {
-            sb.append(bibtexGenerator.booktEntryToBibTex(book));
+            sb.append(bibtexGenerator.bookEntryToBibTex(book));
             sb.append("\n");
         }
 
         for (Inproceedings inproceedings : inproceedingsRepository.findAll()) {
-            sb.append(bibtexGenerator.inproceedingstEntryToBibTex(inproceedings));
+            sb.append(bibtexGenerator.inproceedingsEntryToBibTex(inproceedings));
             sb.append("\n");
         }
 
