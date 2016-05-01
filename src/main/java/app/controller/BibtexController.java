@@ -307,6 +307,8 @@ public class BibtexController {
         bookRepository.deleteAll();
         articleRepository.deleteAll();
         inproceedingsRepository.deleteAll();
+        manualRepository.deleteAll();
+        bookletRepository.deleteAll();
         return "redirect:/bibtexinator";
     }
 
