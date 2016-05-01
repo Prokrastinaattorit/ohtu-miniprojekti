@@ -6,53 +6,57 @@ import app.domain.Entry;
 import app.domain.Inproceedings;
 
 public class BibTexGenerator {
-    
-    //TODO: refactor
 
     private final String tab = "  ";
+    private StringBuilder sb;
 
     public BibTexGenerator() {
     }
 
     public String booktEntryToBibTex(Book book) {
-        StringBuilder sb = new StringBuilder();
-        generateStart(sb, "@book", book);
-        addAuthor(sb, book);
-        addTitle(sb, book);
-        addYear(sb, book);
-        addPublisher(sb, book.getPublisher());
-        addEnd(sb);
+        sb = new StringBuilder();
+        generateStart("@book", book);
+        addAuthor(book.getAuthor());
+        addTitle(book.getTitle());
+        addYear(book.getYear());
+        addPublisher(book.getPublisher());
+        addVolume(book.getVolume());
+        addSeries(book.getSeries());
+        addAddress(book.getAddress());
+        addEdition(book.getEdition());
+        addMonth(book.getMonth());
+        addEnd();
         return replaceFinnishLetters(sb.toString());
     }
 
     public String articletEntryToBibTex(Article article) {
-        StringBuilder sb = new StringBuilder();
-        generateStart(sb, "@article", article);
-        addAuthor(sb, article);
-        addTitle(sb, article);
-        addYear(sb, article);
-        addJournal(sb, article.getJournal());
-        addVolume(sb, article.getVolume());
-        addPages(sb, article.getPages());
-        addNumber(sb, article.getNumber());
-        addMonth(sb, article.getMonth());
-        addEnd(sb);
+        sb = new StringBuilder();
+        generateStart("@article", article);
+        addAuthor(article.getAuthor());
+        addTitle(article.getTitle());
+        addYear(article.getYear());
+        addJournal(article.getJournal());
+        addVolume(article.getVolume());
+        addPages(article.getPages());
+        addNumber(article.getNumber());
+        addMonth(article.getMonth());
+        addEnd();
         return replaceFinnishLetters(sb.toString());
     }
 
     public String inproceedingstEntryToBibTex(Inproceedings inpr) {
-        StringBuilder sb = new StringBuilder();
-        generateStart(sb, "@inproceedings", inpr);
-        addAuthor(sb, inpr);
-        addTitle(sb, inpr);
-        addBookTitle(sb, inpr.getBookTitle());
-        addYear(sb, inpr);
-        addPages(sb, inpr.getPages());
-        addPublisher(sb, inpr.getPublisher());
-        addMonth(sb, inpr.getMonth());
-        addAddress(sb, inpr.getAddress());
-        addOrganization(sb, inpr.getOrganization());
-        addEnd(sb);
+        sb = new StringBuilder();
+        generateStart("@inproceedings", inpr);
+        addAuthor(inpr.getAuthor());
+        addTitle(inpr.getTitle());
+        addBookTitle(inpr.getBookTitle());
+        addYear(inpr.getYear());
+        addPages(inpr.getPages());
+        addPublisher(inpr.getPublisher());
+        addMonth(inpr.getMonth());
+        addAddress(inpr.getAddress());
+        addOrganization(inpr.getOrganization());
+        addEnd();
         return replaceFinnishLetters(sb.toString());
     }
 
@@ -61,6 +65,8 @@ public class BibTexGenerator {
         string = string.replace("Ä", "\\\"{A}");
         string = string.replace("ö", "\\\"{o}");
         string = string.replace("Ö", "\\\"{O}");
+        string = string.replace("å", "\\\"{aa}");
+        string = string.replace("Å", "\\\"{AA}");
         return string;
     }
 
@@ -76,101 +82,14 @@ public class BibTexGenerator {
         return cite;
     }
 
-    private void addAuthor(StringBuilder sb, Entry entry) {
-        sb.append(tab);
-        sb.append("author = {");
-        sb.append(entry.getAuthor());
-        sb.append("},\n");
-    }
-
-    private void addPublisher(StringBuilder sb, String publisher) {
-        sb.append(tab);
-        sb.append("publisher = {");
-        sb.append(publisher);
-        sb.append("},\n");
-    }
-
-    private void addTitle(StringBuilder sb, Entry entry) {
-        sb.append(tab);
-        sb.append("title = {");
-        sb.append(entry.getTitle());
-        sb.append("},\n");
-    }
-
-    private void addBookTitle(StringBuilder sb, String bookTitle) {
-        sb.append(tab);
-        sb.append("bookTitle = {");
-        sb.append(bookTitle);
-        sb.append("},\n");
-    }
-
-    private void addVolume(StringBuilder sb, String volume) {
-        if (volume != null && !volume.isEmpty()) {
-            sb.append(tab);
-            sb.append("volume = {");
-            sb.append(volume);
-            sb.append("},\n");
-        }
-    }
-
-    private void addPages(StringBuilder sb, String pages) {
-        if (pages != null && !pages.isEmpty()) {
-            sb.append(tab);
-            sb.append("pages = {");
-            sb.append(pages);
-            sb.append("},\n");
-        }
-    }
-
-    private void addAddress(StringBuilder sb, String address) {
-        if (address != null && !address.isEmpty()) {
-            sb.append(tab);
-            sb.append("address = {");
-            sb.append(address);
-            sb.append("},\n");
-        }
-    }
-
-    private void addJournal(StringBuilder sb, String journal) {
-        sb.append(tab);
-        sb.append("journal = {");
-        sb.append(journal);
-        sb.append("},\n");
-    }
-
-    private void addYear(StringBuilder sb, Entry entry) {
-        sb.append(tab);
-        sb.append("year = {");
-        sb.append(entry.getYear());
-        sb.append("},\n");
-    }
-
-    private void addMonth(StringBuilder sb, String month) {
-        if (month != null && !month.isEmpty()) {
-            sb.append(tab);
-            sb.append("month = {");
-            sb.append(month);
-            sb.append("},\n");
-        }
-    }
-
-    private void addNumber(StringBuilder sb, String number) {
-        if (number != null && !number.isEmpty()) {
-            sb.append(tab);
-            sb.append("number = {");
-            sb.append(number);
-            sb.append("},\n");
-        }
-    }
-
-    private void generateStart(StringBuilder sb, String entryName, Entry entry) {
+    private void generateStart(String entryName, Entry entry) {
         sb.append(entryName);
         sb.append("{");
         sb.append(generateCite(entry.getAuthor(), entry.getYear()));
         sb.append(",\n");
     }
 
-    private void addEnd(StringBuilder sb) {
+    private void addEnd() {
         sb.append("}\n");
     }
 
@@ -182,14 +101,71 @@ public class BibTexGenerator {
         }
         return result;
     }
-    
-    private void addOrganization(StringBuilder sb, String organization) {
-        if (organization != null && !organization.isEmpty()) {
+
+    private void addField(String field, String value) {
+        if (value != null && !value.isEmpty()) {
             sb.append(tab);
-            sb.append("organization = {");
-            sb.append(organization);
+            sb.append(field);
+            sb.append(" = {");
+            sb.append(value);
             sb.append("},\n");
         }
+    }
+
+    private void addAuthor(String author) {
+        addField("author", author);
+    }
+
+    private void addPublisher(String publisher) {
+        addField("publisher", publisher);
+    }
+
+    private void addTitle(String title) {
+        addField("title", title);
+    }
+
+    private void addBookTitle(String bookTitle) {
+        addField("booktitle", bookTitle);
+    }
+
+    private void addVolume(String volume) {
+        addField("volume", volume);
+    }
+
+    private void addPages(String pages) {
+        addField("pages", pages);
+    }
+
+    private void addAddress(String address) {
+        addField("address", address);
+    }
+
+    private void addJournal(String journal) {
+        addField("journal", journal);
+    }
+
+    private void addYear(String year) {
+        addField("year", year);
+    }
+
+    private void addMonth(String month) {
+        addField("month", month);
+    }
+
+    private void addNumber(String number) {
+        addField("number", number);
+    }
+
+    private void addOrganization(String organization) {
+        addField("organization", organization);
+    }
+
+    private void addEdition(String edition) {
+        addField("edition", edition);
+    }
+
+    private void addSeries(String series) {
+        addField("series", series);
     }
 
 }
