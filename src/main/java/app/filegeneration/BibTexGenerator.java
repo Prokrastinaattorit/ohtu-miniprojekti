@@ -2,8 +2,10 @@ package app.filegeneration;
 
 import app.domain.Article;
 import app.domain.Book;
+import app.domain.Booklet;
 import app.domain.Entry;
 import app.domain.Inproceedings;
+import app.domain.Manual;
 
 public class BibTexGenerator {
 
@@ -26,7 +28,7 @@ public class BibTexGenerator {
         addEdition(book.getEdition());
         addMonth(book.getMonth());
         addEnd();
-        return replaceFinnishLetters(sb.toString());
+        return replaceFinnishLetters();
     }
 
     public String articletEntryToBibTex(Article article) {
@@ -41,7 +43,7 @@ public class BibTexGenerator {
         addNumber(article.getNumber());
         addMonth(article.getMonth());
         addEnd();
-        return replaceFinnishLetters(sb.toString());
+        return replaceFinnishLetters();
     }
 
     public String inproceedingstEntryToBibTex(Inproceedings inpr) {
@@ -57,10 +59,38 @@ public class BibTexGenerator {
         addAddress(inpr.getAddress());
         addOrganization(inpr.getOrganization());
         addEnd();
-        return replaceFinnishLetters(sb.toString());
+        return replaceFinnishLetters();
     }
 
-    private String replaceFinnishLetters(String string) {
+    public String manualEntryToBibTex(Manual manual) {
+        sb = new StringBuilder();
+        generateStart("@manual", manual);
+        addAuthor(manual.getAuthor());
+        addTitle(manual.getTitle());
+        addYear(manual.getYear());
+        addMonth(manual.getMonth());
+        addAddress(manual.getAddress());
+        addEdition(manual.getEdition());
+        addOrganization(manual.getOrganization());
+        addEnd();
+        return replaceFinnishLetters();
+    }
+
+    public String bookletEntryToBibTex(Booklet booklet) {
+        sb = new StringBuilder();
+        generateStart("@booklet", booklet);
+        addAuthor(booklet.getAuthor());
+        addTitle(booklet.getTitle());
+        addYear(booklet.getYear());
+        addAddress(booklet.getAddress());
+        addMonth(booklet.getMonth());
+        addHowPublished(booklet.getHowpublished());
+        addEnd();
+        return replaceFinnishLetters();
+    }
+
+    private String replaceFinnishLetters() {
+        String string = sb.toString();
         string = string.replace("ä", "\\\"{a}");
         string = string.replace("Ä", "\\\"{A}");
         string = string.replace("ö", "\\\"{o}");
@@ -166,6 +196,10 @@ public class BibTexGenerator {
 
     private void addSeries(String series) {
         addField("series", series);
+    }
+
+    private void addHowPublished(String howpublished) {
+        addField("howpublished", howpublished);
     }
 
 }

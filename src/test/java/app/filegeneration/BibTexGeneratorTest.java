@@ -139,11 +139,13 @@ public class BibTexGeneratorTest {
 
     }
 
+    
+    
     @Test
     public void testFinnishLetters() {
         Book book = new Book();
         book.setAuthor("Kirja Kirjailija");
-        book.setPublisher("publisher");
+        book.setPublisher("Åbo");
         book.setYear("2018");
         book.setTitle("Ääkköset");
         String result = bibtexnator.booktEntryToBibTex(book);
@@ -152,7 +154,7 @@ public class BibTexGeneratorTest {
                 + "  author = {Kirja Kirjailija},\n"
                 + "  title = {\\\"{A}\\\"{a}kk\\\"{o}set},\n"
                 + "  year = {2018},\n"
-                + "  publisher = {publisher},\n"
+                + "  publisher = {\\\"{AA}bo},\n"
                 + "}\n");
     }
 
