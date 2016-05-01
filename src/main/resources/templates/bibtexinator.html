@@ -122,13 +122,29 @@
                 <ul class="entry" th:each="booklet : ${booklets}">
                     <p class="entryHeader">Booklet</p>
                     <form action="#" th:action="@{/bibtexinator/editBooklet/{id}(id=${booklet.id})}" method="POST" class="entryContent">
-                        <li>Title:&nbsp;&nbsp;&nbsp;&nbsp;<input name="title" class="bookletTitleField" th:value="${booklet.title}" type="text" required="required"/></li>
-                        <li>Author&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="author" class="bookletAuthorField" th:value="${booklet.author}" type="text"/></li>
-                        <li>Howpublished:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="howpublished" class="bookletHowpublishedField" th:value="${booklet.howpublished}" type="text"/></li>
-                        <li>Address:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="address" class="bookletAddressField" th:value="${booklet.address}" type="text"/></li>
-                        <li>Month:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="month" class="bookletMonthYear" th:value="${booklet.month}" type="text"/></li>
-                        <li>Year:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="year" class="bookletYearField" th:value="${booklet.year}" type="text"/></li>
-                        <li>Note:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="note" class="bookletNoteField" th:value="${booklet.note}" type="text"/></li>
+                        <li>Title: <input name="title" class="bookletTitleField" th:value="${booklet.title}" type="text" required="required"/></li>
+                        <li>Author: <input name="author" class="bookletAuthorField" th:value="${booklet.author}" type="text"/></li>
+                        <li>Howpublished: <input name="howpublished" class="bookletHowpublishedField" th:value="${booklet.howpublished}" type="text"/></li>
+                        <li>Address: <input name="address" class="bookletAddressField" th:value="${booklet.address}" type="text"/></li>
+                        <li>Month: <input name="month" class="bookletMonthField" th:value="${booklet.month}" type="text"/></li>
+                        <li>Year: <input name="year" class="bookletYearField" th:value="${booklet.year}" type="text"/></li>
+                        <li class="entryButtons">
+                            <button name="action" type="submit" value="edit" class="btn btn-default btn-xs editButton">Save edits</button>
+                            <button name="action" type="submit" value="delete" class="btn btn-danger btn-xs deleteButton">Delete</button>
+                        </li>
+                    </form>
+                </ul>
+                
+                <ul class="entry" th:each="manual : ${manuals}">
+                    <p class="entryHeader">Manual</p>
+                    <form action="#" th:action="@{/bibtexinator/editManual/{id}(id=${manual.id})}" method="POST" class="entryContent">
+                        <li>Title: <input name="title" class="manualTitleField" th:value="${manual.title}" type="text" required="required"/></li>
+                        <li>Author: <input name="author" class="manualAuthorField" th:value="${manual.author}" type="text"/></li>
+                        <li>Organization: <input name="organization" class="manualOrganizationField" th:value="${manual.organization}" type="text"/></li>
+                        <li>Address: <input name="address" class="manualAddressField" th:value="${manual.address}" type="text"/></li>
+                        <li>Edition: <input name="edition" class="manualEditionField" th:value="${manual.edition}" type="text"/></li>
+                        <li>Month: <input name="month" class="manualMonthField" th:value="${manual.month}" type="text"/></li>
+                        <li>Year: <input name="year" class="manualYearField" th:value="${manual.year}" type="text"/></li>
                         <li class="entryButtons">
                             <button name="action" type="submit" value="edit" class="btn btn-default btn-xs editButton">Save edits</button>
                             <button name="action" type="submit" value="delete" class="btn btn-danger btn-xs deleteButton">Delete</button>
