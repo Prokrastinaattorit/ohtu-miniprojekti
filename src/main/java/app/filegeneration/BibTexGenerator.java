@@ -108,7 +108,9 @@ public class BibTexGenerator {
         if (year != null && year.length() >= 2) {
             cite = cite + year.substring(year.length() - 2, year.length());
         }
-        //TODO: Should replace ä and ö to something else?
+        cite = cite.replace("Ä", "A");
+        cite = cite.replace("Ö", "O");
+        cite = cite.replace("Å", "A");
         return cite;
     }
 
