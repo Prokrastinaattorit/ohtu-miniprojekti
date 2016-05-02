@@ -95,8 +95,8 @@ public class BibTexGenerator {
         string = string.replace("Ä", "\\\"{A}");
         string = string.replace("ö", "\\\"{o}");
         string = string.replace("Ö", "\\\"{O}");
-        string = string.replace("å", "\\\"{aa}");
-        string = string.replace("Å", "\\\"{AA}");
+        string = string.replace("å", "\\\"aa{}");
+        string = string.replace("Å", "\\\"AA{}");
         return string;
     }
 
