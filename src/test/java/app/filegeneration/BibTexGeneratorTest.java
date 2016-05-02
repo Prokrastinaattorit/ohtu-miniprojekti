@@ -190,7 +190,7 @@ public class BibTexGeneratorTest {
                 + "  author = {Kirja Kirjailija},\n"
                 + "  title = {\\\"{A}\\\"{a}kk\\\"{o}set},\n"
                 + "  year = {2018},\n"
-                + "  publisher = {\\\"{AA}bo},\n"
+                + "  publisher = {\\\"AA{}bo},\n"
                 + "}\n");
     }
 
