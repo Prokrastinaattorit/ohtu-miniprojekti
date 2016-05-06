@@ -19,3 +19,5 @@ Testit saa ajettua komennolla:
 mvn integration-test
 ```
 Tämä ajaa sekä tavalliset testit että easyb-testit. Suorituksen lopussa kerrotaan easyb:n "scenarios run" ja "total behaviors ran".
+
+
