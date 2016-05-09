@@ -14,6 +14,8 @@ Backlog: https://trello.com/b/I76kFLET/ohtuminiproju
 
 Burndown: https://www.burndownfortrello.com/index.php
 
+Loppuraportti: https://docs.google.com/document/d/1ZKShaTEbo53bJTa5X5GXiwmwa406ZgpuO8_iQPOoXek/edit?usp=sharing
+
 Testit saa ajettua komennolla:
 ```
 mvn integration-test
